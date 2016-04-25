@@ -10,8 +10,8 @@ if socket.gethostname() == 'r420':
     DATABASES = {
          'default': {
              'ENGINE': 'django.db.backends.mysql',
-             'NAME': 'enjoyafrru_lead',
-             'USER': 'leader',
+             'NAME': 'enjoyafrru_fdoma',
+             'USER': 'enjoyafrru_fdoma',
              'PASSWORD': '1111',
              'HOST': 'localhost',
              'PORT': '',
@@ -21,8 +21,8 @@ else:
     DATABASES = {
          'default': {
              'ENGINE': 'django.db.backends.mysql',
-             'NAME': 'enjoyafrru_lead',
-             'USER': 'enjoyafrru_lead',
+             'NAME': 'enjoyafrru_fdoma',
+             'USER': 'enjoyafrru_fdoma',
              'PASSWORD': 'alena2010',
              'HOST': 'localhost',
              'PORT': '',

@@ -16,8 +16,6 @@ INSTALLED_APPS = (
     'core',
     'apps.ticket',
     'apps.landing',
-    'apps.blog',
     'apps.city',
-    'apps.sender',
     'django_cleanup',
 )

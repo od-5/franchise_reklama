@@ -6,6 +6,5 @@ __author__ = 'alexy'
 
 urlpatterns = patterns(
     'apps.ticket.ajax',
-    url(r'^$', 'ticket', name='send'),
-    url(r'^test/$', 'test', name='test'),
+    url(r'^$', 'ticket_send', name='send'),
 )

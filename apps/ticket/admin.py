@@ -19,7 +19,7 @@ class TicketAdmin(admin.ModelAdmin):
     search_fields = ['mail', 'manager']
     date_hierarchy = 'created'
     readonly_fields = ('country', 'city', 'time_zone')
-    fields = ('name', 'phone', 'mail', 'comment', 'country', 'city', 'time_zone', 'status', 'contact_date', 'manager', 'ticket_comment', 'sale')
+    fields = ('name', 'phone', 'mail', 'country', 'city', 'time_zone', 'status', 'contact_date', 'manager', 'ticket_comment', 'sale')
     form = TicketAdminForm
 
     def get_queryset(self, request):

@@ -1,502 +1,381 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="keywords" content="{{ SETUP.meta_key|safe|default:'' }}">
-	<meta name="description" content="{{ SETUP.meta_desc|safe|default:'' }}">
-	<meta name="format-detection" content="telephone=no">
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <title>{{ SETUP.meta_title|default:'Заголовок сайта' }}Рекламное агентство «Дружба»</title>
   {% load staticfiles %}
-	<link href="{% static 'landing/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
-	<title>{{ SETUP.title|default:'Не указано' }}</title>
-	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/all.css' %}" />
-	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/nivo-slider.css' %}" />
-	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/jquery.fancybox.css' %}" />
-	<script src="{% static 'landing/js/jquery-1.9.1.min.js' %}"></script>
-	<script src="{% static 'landing/js/jquery.nivo.slider.pack.js' %}"></script>
-	<script src="{% static 'landing/js/jquery.validate.js' %}"></script>
-	<script src="{% static 'landing/js/jquery.form.js' %}"></script>
-	<script src="{% static 'landing/js/jquery.fancybox.js' %}"></script>
-	<script src="{% static 'landing/js/tabs.js' %}"></script>
-	<script src="{% static 'landing/js/notify-combined.min.js' %}"></script>
-	<script src="{% static 'landing/js/jquery.scrollTo.js' %}"></script>
-	<script src="{% static 'landing/js/jquery.maskedinput.js' %}"></script>
-	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/html5.js' %}"></script><![endif]-->
-	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
-	<script src="{% static 'landing/js/all.js' %}"></script>
+  <meta name="keywords" content="{{ SETUP.meta_key|safe|default:'' }}">
+	<meta name="description" content="{{ SETUP.meta_desc|safe|default:'' }}">
+  <link rel="stylesheet" href="{% static 'landing/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'landing/fancy-box/jquery.fancybox.css' %}">
+  <link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="{% static 'landing/js/jquery.maskedinput.js' %}"></script>
+  <script src="{% static 'landing/fancy-box/jquery.fancybox.js' %}"></script>
+  <script src="{% static 'landing/js/scrollspy.js' %}"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  <script src="{% static 'landing/js/jquery.validate.js' %}"></script>
+  <script src="{% static 'landing/js/jquery.form.js' %}"></script>
+  <script src="{% static 'landing/js/notify-combined.min.js' %}"></script>
+  <!--[if lt IE 10]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
+  <script src="{% static 'landing/js/main.js' %}"></script>
   {{ SETUP.top_js|safe|default:'' }}
 </head>
 <body>
-	<div id="wrapper">
-		<header class="header">
-			<div class="city-hidden city1">
-				<div class="holder">
-					<a href="" class="city-close">x</a>
-					<div class="city-block">
-          {% if CITY_LIST %}
-						<ul class="city-list">
-            {% for city in CITY_LIST %}
-              <li>{{ city.name }}</li>
-            {% endfor %}
-						</ul>
-          {% endif %}
-					</div>
-				</div>
-			</div>
-			<div class="header-top">	
-				<div class="holder">
-					<div class="slogan">
-						<span class="orange">Бизнес</span>, с которым<br> 
-						<span class="orange">справится</span> даже <span class="green">1</span> человек
-					</div>
-					<div class="logo">
-						<img src="{% static 'landing/images/logo.png' %}" alt="">
-					</div>
-					<div class="header-right">
-						<div class="header-city-link"><a href="">Города присутствия</a></div>
-						<div class="header-phone">{{ SETUP.phone|default:'0 000 000 00 00' }}</div>
-					</div>
-				</div>
-			</div>
-			<div class="header-main">
-				<div class="header-main-bg"></div>
-				<div class="holder">
-					<h1><strong>Станьте владельцем</strong> первого в России <strong>агентства INDOOR рекламы</strong> с программой 
-					онлайн АВТОМАТИЗАЦИИ всех бизнес-процессов и получайте 
-					свыше <strong><br>1 000 000 рублей чистой прибыли в год!</strong></h1>
-					<div class="header-main-left">
-						<ul class="header-main-list">
-							<li>Без специальных знаний</li>
-							<li>Готовый бизнес «под ключ» от 100 тыс. рублей</li>
-							<li>Окупаемость за 5 месяцев</li>
-							<li>Удаленное управление и контроль прямо из дома</li>
-						</ul>
-						<div class="header-main-left-text">Только во второй половине 2015 года представители бизнеса 
-						в России потратили на рекламу более 158 миллиардов рублей. <br><br>
-						Вы также можете участвовать в освоении этих денег!</div>
-					</div>
-					<div class="form-block">
-						<div class="form-title">Заполните форму</div>
-						<div class="form-text">и узнайте все условия открытия вашего бизнеса</div>
-						<form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
-							<fieldset>
-								<input type="text" name="name" class="input required" placeholder="Ваше имя *">
-								<input type="text" name="phone" class="input no-margin required" placeholder="+7 (___) ___ - __ - __">
-								<input type="hidden" name="theme" value="1">
-								<div class="submit-holder">
-									<button class="submit">Получить информацию</button>
-								</div>
-							</fieldset>
-						</form>
-						<div class="form-text-min">Мы гарантируем конфиденциальность</div>
-					</div>
-				</div>
-				<div class="main-slider">
-					<div id="slider" class="nivoSlider">
-						<img src="{% static 'landing/images/slide1.png' %}" alt="" />
-						<img src="{% static 'landing/images/slide2.png' %}" alt="" />
-						<img src="{% static 'landing/images/slide3.png' %}" alt="" />
-						<img src="{% static 'landing/images/slide4.png' %}" alt="" />
-					</div>
-				</div>
-			</div>
-			<div class="header-fix">
-				<div class="city-hidden city2">
-					<div class="holder">
-						<a href="" class="city-close">x</a>
-						<div class="city-block">
-            {% if CITY_LIST %}
-              <ul class="city-list">
-              {% for city in CITY_LIST %}
-                <li>{{ city.name }}</li>
-              {% endfor %}
-              </ul>
-            {% endif %}
-            </div>
-					</div>
-				</div>
-				<div class="header-fix-holder">
-					<div class="holder">
-						<ul class="header-nav">
-							<li class="scroll"><a href="#block1">Для кого</a></li>
-							<li class="scroll"><a href="#block2">Видео-презентация</a></li>
-							<li class="scroll"><a href="#block3">Что входит</a></li>
-							<li class="scroll"><a href="#block4">Преимущества</a></li>
-							<li class="scroll"><a href="#block5">Контакты</a></li>
-							<li class="scroll"><a href="#block6">Получить условия</a></li>
-							<li><a href="{% url 'blog:list' %}">Блог</a></li>
-						</ul>
-						<div class="header-fix-link"><a href="">Города пристутствия</a></div>
-					</div>
-				</div>
-			</div>
-		</header>	
-		<section class="reclame">
-			<div class="holder">
-				<h2>Новое направление в рекламе</h2>
-				<div class="title-text">Информационные таблички на входных дверях подъездов<br>
-				Реклама в home-формате эффективна и востребована</div>
-				<div class="reclame-photo">
-					<a href="{% static 'landing/images/rec/1b.jpg' %}" class="fancybox" data-fancybox-group="rec"><img src="{% static 'landing/images/rec/1.jpg' %}" alt=""></a>
-					<a href="{% static 'landing/images/rec/2b.jpg' %}" class="fancybox" data-fancybox-group="rec"><img src="{% static 'landing/images/rec/2.jpg' %}" alt=""></a>
-					<a href="{% static 'landing/images/rec/3b.jpg' %}" class="fancybox" data-fancybox-group="rec"><img src="{% static 'landing/images/rec/3.jpg' %}" alt=""></a>
-					<a href="{% static 'landing/images/rec/4b.jpg' %}" class="fancybox" data-fancybox-group="rec"><img src="{% static 'landing/images/rec/4.jpg' %}" alt=""></a>
-					<a href="{% static 'landing/images/rec/5b.jpg' %}" class="fancybox" data-fancybox-group="rec"><img src="{% static 'landing/images/rec/5.jpg' %}" alt=""></a>
-					<a href="{% static 'landing/images/rec/6b.jpg' %}" class="fancybox" data-fancybox-group="rec"><img src="{% static 'landing/images/rec/6.jpg' %}" alt=""></a>
-				</div>
-				<div class="reclame-text">
-					<p>Благодаря уникальной запатентованной программной разработке  «Контроль рекламных поверхностей» ваши 
-					рекламодатели смогут проконтролировать процесс монтажа конструкций в онлайн-режиме в несколько кликов,
-					не покидая стен своего офиса.</p>
-					<p>Ваши клиенты оценят доступный и эффективный формат рекламы, который мы довели до совершенства с
-					помощью современных технологий.</p>
-					<p class="orange">Аналогов подобной программы<br> в рекламной сфере нет!</p>
-				</div>
-			</div>	
-		</section>
-		<section class="about" id="block1">
-			<div class="holder">
-				<h2>Вас заинтересует<br> наше предложение</h2>
-				<div class="about-top">
-					<div class="about-block about-left"><b>Вам</b> хочется идти в ногу со временем и использовать в своем бизнесе современные автоматизированные технологии работы.<br><br></div>
-					<div class="about-block about-right"><b>Вы</b> хотите купить проверенный временем бизнес-проект у франчайзера с большим опытом работы. (подробности о нашем бизнес-пути читайте в блоге <a href="http://xn--80ahdjbdquza7bzc.xn--p1ai/blog/kriterii-uspeha-franshizy">«Немного о нас»</a>) </div>
-					<div class="about-round round1">если</div>
-				</div>
-				<!--
-				<div class="about-main">
-					<div class="about-round round2">а также </div>
-					<div class="about-point point1 about1">
-						<div class="about-point-block about2">У вас уже есть работающий бизнес, но он не приносит  желаемой прибыли и отнимает  много времени.</div>
-					</div>
-					<div class="about-point point2 about3">
-						<div class="about-point-block about4">Вам важно выбрать проверенный временем и другими людьми бизнес проект.</div>
-					</div>
-					<div class="about-point point3 about5">
-						<div class="about-point-block about6">Вы хотите грамотно распорядиться своими накоплениями, но при этом у вас недостаточно опыта  и знаний</div>
-					</div>
-					<div class="about-point point4 about7">
-						<div class="about-point-block about8">Вам хочется идти в ногу со временем и использовать в своем бизнесе современные автоматизированные системы управления.</div>
-					</div>
-				</div>
-				-->
-			</div>	
-		</section>
-		<section class="video-block" id="block2">
-			<div class="holder">
-				<h2>Вы сможете вести свой бизнес,<br> не выходя из дома!</h2>
-				<div class="title-text">Все бизнес-процессы полностью автоматизированы:<br> покинуть уютное офисное кресло
-				вам придется лишь<br> для подписания договоров с клиентами</div>
-				<div class="video-text-min">Как работает программа онлайн-мониторинга и автоматизации бизнес-процессов?</div>
-				<div class="video-monitor">
-					<a href="#popup" class="video-link fancybox">
-						<img src="{% static 'landing/images/play.png' %}" alt="" class="monitor-play pulsing">
-						<img src="{% static 'landing/images/monitor-text.png' %}" alt="" class="monitor-text">
-					</a>
-				</div>
-			</div>	
-		</section>
-		<section class="info" id="block3">
-			<div class="holder">
-				<h2>Что вы получите</h2>
-				<div class="title-text">выбрав модель бизнеса, которую мы предлагаем</div>
-				<ul class="info-list">
-					<li class="info-list-item">
-						<div class="info-list-icon">
-							<img src="{% static 'landing/images/icons/1.png' %}" alt="">
-						</div>
-						<div class="info-list-content">
-							<h4 class="info-list-title">Востребованный продукт с гарантированным сбытом</h4>
-							<p class="info-list-text">Реклама на подъездах пользуется большим спросом у рекламодателей. 
-							Такой продукт легко продать, потому что он простой, эффективный и экономически выгодный. 
-							Вместе с франшизой вы получите подключение к программе онлайн-мониторинга и автоматизации
-							«Контроль рекламных поверхностей» для вашего города и приложение для контроля процесса
-							монтажа для операционной системы Андроид.</p>
-						</div>
-					</li>
-					<li class="info-list-item">
-						<div class="info-list-icon">
-							<img src="{% static 'landing/images/icons/4.png' %}" alt="">
-						</div>
-						<div class="info-list-content">
-							<h4 class="info-list-title">Бизнес-модель, которая работает на 100%</h4>
-							<p class="info-list-text">Бизнес-модель, которую мы предлагаем, основана на собственном опыте,
-							миллионных инвестициях, ошибках и экспериментах. Сегодня мы полностью уверены в ее
-							работоспособности и эффективности.
-							(читайте в блоге <a href="http://лидерфраншиз.рф/blog/pokupka-franshizy-ili-biznes-s-nulya-chto-vygodnee">«Покупка франшизы или бизнес с нуля: что выгоднее?»</a>)</p>
-						</div>
-					</li>
-					<li class="info-list-item">
-						<div class="info-list-icon">
-							<img src="{% static 'landing/images/icons/2.png' %} " alt="">
-						</div>
-						<div class="info-list-content">
-							<h4 class="info-list-title">Высокую доходность и минимальный срок запуска</h4>
-							<p class="info-list-text">При четком выполнении наших рекомендаций вы запустите проект уже 
-							через 20 дней с момента покупки! <i>Вы сможете зарабатывать ежемесячно от 100 тыс. рублей.</i></p>
-						</div>
-					</li>
-					<li class="info-list-item">
-						<div class="info-list-icon">
-							<img src="{% static 'landing/images/icons/5.png' %}" alt="">
-						</div>
-						<div class="info-list-content">
-							<h4 class="info-list-title">Постоянную поддержку команды с 8-летним опытом работы на рекламном рынке</h4>
-							<p class="info-list-text">Персональный менеджер предоставит обучающие материалы и будет оказывать 
-							вам всестороннюю поддержку на всех этапах запуска франшизы.</p>
-						</div>
-					</li>
-					<li class="info-list-item">
-						<div class="info-list-icon">
-							<img src="{% static 'landing/images/icons/6.png' %}" alt="">
-						</div>
-						<div class="info-list-content">
-							<h4 class="info-list-title">Специально разработанную систему ведения базы клиентов и продаж</h4>
-							<p class="info-list-text">Вы получите систему работы, полностью адаптированную под рекламный
-							продукт и бизнес-процессы. Ваши менеджеры не забудут о клиентах и не заберут базу с собой. 
-							Вы всегда будете знать, кто, кому и когда должен позвонить.</p>
-						</div>
-					</li>
-					<li class="info-list-item">
-						<div class="info-list-icon">
-							<img src="{% static 'landing/images/icons/7.png' %}" alt="">
-						</div>
-						<div class="info-list-content">
-							<h4 class="info-list-title">Запатентованную рекламную конструкцию</h4>
-							<p class="info-list-text">После  экспериментов с рекламной конструкцией, мы выбрали 
-							оптимальный вариант и запатентовали его как промышленный образец. Вы можете не беспокоиться 
-							о сохранности таблички: она максимально защищена от вандализма.<br>
-							<b>Внимание! Действует беспроцентная рассрочка на приобретение рекламных конструкций на 6 
-							месяцев от франчайзера!</b><img src="{% static 'landing/images/bonus.png' %}" alt="" class="bonus"></p>
-						</div>
-					</li>
-				</ul>
-				<blockquote class="info-bottom-text">Мы взяли за основу простой и понятный рекламодателям формат рекламы и с помощью
-				современных технологий довели его до совершенства, <b>обогнав конкурентов минимум на 2 года</b></blockquote>
-			</div>
-		</section>
-		<section class="order">
-			<div class="holder">
-				<div class="order-title"><span>Система </span>онлайн-мониторинга размещения рекламы</div>
-				<div class="form-block">
-					<div class="form-title">Заполните форму</div>
-					<div class="form-text">и получите подробную консультацию о франшизе</div>
-					<form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
-						<fieldset>
-							<input type="text" name="name" class="input required" placeholder="Ваше имя *">
-							<input type="text" name="phone" class="input no-margin required" placeholder="+7 (___) ___ - __ - __">
-							<input type="text" name="mail" class="input required" placeholder="Ваш email *">
-							<input type="hidden" name="theme" value="2">
-							<div class="submit-holder">
-								<button class="submit">Получить консультацию</button>
-							</div>
-						</fieldset>
-					</form>
-					<div class="form-text-min">Мы гарантируем конфиденциальность</div>
-				</div>
-				<div class="video-tablet">
-					<a href="#dialog" class="tablet-link modal">
-						<img src="{% static 'landing/images/play2.png' %}" alt="" class="tablet-play pulsing">
-						<img src="{% static 'landing/images/tablet-text.png' %}" alt="" class="tablet-text">
-					</a>
-				</div>
-			</div>
-		</section>
-		<section class="advantages" id="block4">
-			<div class="holder">
-				<h2>Франшиза от Федеральной сети <br>агентств INDOOR рекламы «Дружба»</h2>
-				<div class="title-text">Мы достигли высоких финансовых показателей благодаря сочетанию простого 
-				и полезного формата рекламы с инновационным подходом в ведении бизнеса.</div>
-				<h3>Наши преимущества</h3>
-				<ul class="advantages-list">
-					<li class="advantages-list-item ad1">
-						<div class="advantages-list-num">1.</div>
-						<div class="advantages-list-text">За 8 лет работы в рекламном бизнесе мы досконально изучили его 
-						специфику и готовы поделиться с вами только актуальной и полезной информацией. Мы — практики.
-						Последние 6 лет мы занимаемся исключительно продажей собственных рекламных поверхностей, 
-						поэтому точно знаем, что нужно делать для развития и процветания вашего бизнеса.</div>
-					</li>
-					<li class="advantages-list-item ad2">
-						<div class="advantages-list-num">2.</div>
-						<div class="advantages-list-text">Мы разработали и внедрили собственную программу отчетности
-						и мониторинга размещения рекламы в онлайн-режиме для вас и ваших клиентов. Рекламодатели будут 
-						уверены в вашей честности, а вы всегда будете в курсе всех происходящих событий на вашей фирме.
-						С помощью программы мы снизили до минимума расходную часть по ведению бизнеса. (подробности 
-						читайте в блоге <a href="{% url 'blog:list' %}">«Какую экономию мы получили от внедрения программы (на
-						основании наших собственных филиалов)»</a>) </div>
-					</li>
-					<li class="advantages-list-item ad3">
-						<div class="advantages-list-num">3.</div>
-						<div class="advantages-list-text">Благодаря эффективной схеме работы мы увеличили 
-						лояльность и удовлетворенность наших клиентов. </div>
-					</li>
-					<li class="advantages-list-item ad4">
-						<div class="advantages-list-num">4.</div>
-						<div class="advantages-list-text">Мы довели до совершенства систему поиска, сбора и обработки
-						заявок от потенциальных клиентов и добились высокого процента повторного обращения. Более 
-						30% рекламодателей – это «входящие» клиенты. (подробности  читайте в блоге <a href="http://лидерфраншиз.рф/blog/kak-vsego-za-800-rublej-my-privlekli-6-klientov-dlya-nashego-partnera-iz-kazani">«Как всего за
-						800 рублей мы привлекли 6 клиентов для нашего партнера из Казани?»</a>)</div>
-					</li>
-					<li class="advantages-list-item ad5">
-						<div class="advantages-list-num">5.</div>
-						<div class="advantages-list-text">Мы постоянно расширяем географию нашего присутствия. Сеть из 
-						8 собственных филиалов и 4 успешно работающих рекламных агентства, взявших за основу нашу 
-						бизнес-модель, являются доказательством эффективности выбранной стратегии. Наши филиалы стабильно
-						работают на рекламном рынке более 5 лет и ежегодно зарабатывают многомиллионную прибыль.</div>
-					</li>
-					<li class="advantages-list-item ad6">
-						<div class="advantages-list-num">6.</div>
-						<div class="advantages-list-text">Наш тип рекламного носителя прописан в маркетинговых планах 
-						многих федеральных компаний. Сейчас они вынуждены размещаться на альтернативных носителях, 
-						поскольку в вашем городе нет нашего формата рекламы. Около 30% наших постоянных клиентов — 
-						это федеральные компании. География их присутствия — вся Россия.</div>
-					</li>
-				</ul>
-			</div>	
-		</section>
-		<section class="person">
-			<div class="holder">
-				<div class="person-block">
-					<img src="{% static 'landing/images/man.png' %}" alt="" class="man">
-					<div class="person-right">
-						<div class="person-title">Мы реальное рекламное агентство</div>
-						<div class="person-big-text">Которое успешно зарабатывает деньги на продаже собственных рекламных 
-						площадей. Сделайте правильный выбор! Сотрудничайте с профессионалами, а не с фирмами-однодневками, 
-						которые только и занимаются продажей франшиз и обучением искусству зарабатывать деньги, не имея 
-						собственных успехов и достижений в этой сфере.</div>
-						<div class="person-min-title">Присоединяйтесь к нашей сети прямо сейчас!</div>
-						<div class="person-name">Лунев Валерий Александрович</div>
-						<div class="person-status">Директор Федеральной сети агентств INDOOR рекламы "Дружба"</br><a href="http://nadomofone.ru/" target="_blank" style="color:#fff;">www.nadomofone.ru</a></div>
-					</div>
-				</div>
-			</div>	
-		</section>
-		<section class="indoor">
-			<div class="holder">
-				<h2>Успейте захватить рынок Indoor<br> рекламы в своем городе</h2>
-				<div class="title-text">Оставьте позади конкурентов, внедряя самые передовые технологии!</div>
-				<div class="indoor-block">
-					<div class="indoor-left">
-						<img src="{% static 'landing/images/indoor.jpg' %}" alt="">
-					</div>
-					<div class="indoor-right">
-						<div class="contacts-blog-text">Остались вопросы?<br> Посмотрите наш блог<a href="{% url 'blog:list' %}"></a></div>
-            {% if POSTSECTION_LIST %}
-						<ul class="contacts-blog-list">
-              {% for section in POSTSECTION_LIST %}
-							<li><a href="{{ section.get_absolute_url }}">{{ section.title }}</a></li>
-              {% endfor %}
-{#							<li><a href="{% url 'blog:list' %}">Новости проекта</a></li>#}
-{#							<li><a href="{% url 'blog:list' %}">Истории успеха</a></li>#}
-{#							<li><a href="{% url 'blog:list' %}">Специальные предложения</a></li>#}
-{#							<li><a href="{% url 'blog:list' %}">Вопросы-ответы</a></li>#}
-						</ul>
-            {% endif %}
-					</div>
-				</div>
-			</div>	
-		</section>
-		<section class="contacts" id="block5">
-			<div class="holder">
-				<h2>Наши контакты</h2>
-				<div class="title-text">свяжитесь с нами</div>
-				<div class="contacts-text">{{ SETUP.address|default:'' }}<br>{{ SETUP.phone|default:'0 000 000 000 00' }}<br></div>
-			</div>	
-		</section>
-		<section class="map">
-			<div id="block6"></div>
-			<div class="holder">
-				<div class="form-block form-block-big">
-					<div class="form-title">Заполните форму</div>
-					<div class="form-text">и получите презентацию с перечнем<br> свободных городов</div>
-					<form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
-						<fieldset>
-							<input type="text" name="name" class="input required" placeholder="Ваше имя *">
-							<input type="text" name="phone" class="input no-margin required" placeholder="+7 (___) ___ - __ - __">
-							<input type="text" name="mail" class="input required" placeholder="Ваш email *">
-							<input type="hidden" name="theme" value="3">
-							<div class="submit-holder">
-								<button class="submit">Получить консультацию</button>
-							</div>
-						</fieldset>
-					</form>
-					<div class="form-text-min">Мы гарантируем конфиденциальность</div>
-				</div>
-				<h3 class="map-text">Города, где франшиза уже нашла своего владельца</h3>
-				<div class="map-text-min">Эксклюзивным представителем по городу может быть только одна компания</div>
-			</div>
-			<div id="ya_map"></div>
-				<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-				<script type="text/javascript">
-					ymaps.ready(init);
-					var myMap;
+  <header>
+    <div class="container">
+      <p><span>Бизнес</span>, с которым <span>справится</span> даже <span class="number">1</span> <span>человек</span></p>
+      <div class="phone">
+        <ul class="languages-list">
+          <li class="russian choose">
+            <a href="#">
+            Русский
+            </a>
+          </li>
+          <li class="ukrainian">
+            <a href="#">
+            Украинский
+            </a>
+          </li>
+          <li class="english">
+            <a href="#">
+            Казахский
+            </a>
+          </li>
+        </ul>
+        <address>{{ SETUP.phone|default:'8 800 250-34-50' }}</address>
+      </div>
+      <h1><a href="index.html"><img src="{% static 'landing/img/logo.png' %}" alt="Дружба"></a></h1>
+    </div>
+  </header>
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a class="scroll" href="#about">О бизнесе</a></li>
+        <li><a class="scroll" href="#report">Программа отчетности</a></li>
+        <li><a class="scroll" href="#advantages">Преимущества</a></li>
+        <li><a class="scroll" href="#included">Что входит</a></li>
+        <li><a class="scroll" href="#contacts">Контакты</a></li>
+        <li><a href="#popup" class="fancybox">Получить условия</a></li>
+      </ul>
+    </div>
+  </nav>
+  <section class="open-business">
+    <div class="container">
+      <div class="form">
+        <h4>Заполните <span>форму</span></h4>
+        <p>И узнайте все условия открытия вашего бизнеса</p>
+        <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+          <input type="text" name="name" placeholder="Ваше имя *">
+          <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
+          <input type="text" name="mail" placeholder="Ваш email *">
+          <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+          <button type="submit" class="my-btn">Получить информацию</button>
+        </form>
+        <p class="warranty">Мы гарантируем конфиденциальность</p>
+      </div>
+      <div class="open">
+        <h2>Откройте <span>свой</span> рекламный <span>бизнес</span> по франшизе </h2>
+        <p class="price">С применением инновационных технологий всего <span>за 80 000</span> рублей</p>
+        <p class="salary">И зарабатывайте <span>от 50 000 рублей в месяц</span> без опыта и больших капиталовложений!</p>
+        <p class="description"><span></span>Откройте собственное рекламное агентство по распространению листовок по почтовым ящикам и расклейке объявлений на информационных стендах. Все бизнес-процессы полностью автоматизированы.</p>
+        <div class="link">
+          <a class="ipad fancybox" href="#video">
+            <img src="{% static 'landing/img/ipad.png' %}" alt="ipad">
+          </a>
+          <a class="hover fancybox" href="#video">
+            Программная разработка, не имеющая аналогов в рекламной сфере «Контроль расклейки и распространения объявлений»
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="reasons">
+    <div class="container">
+      <ul class="asks-list">
+        <li>
+          <p class="asks-item1">Хотите открыть собственное дело, но ограничены в средствах?</p>
+        </li>
+        <li>
+          <p class="asks-item2">Мечтаете покинуть офисное кресло и заняться предпринимательской деятельностью?</p>
+        </li>
+        <li>
+          <p class="asks-item3">Ищете дополнительный источник дохода без крупных капиталовложений? Ваши цели реальны!</p>
+        </li>
+      </ul>
+      <span class="clear">.</span>
+      <h3><span>7</span> причин купить франшизу</h3>
+      <p class="agency">Рекламного агентства «Дружба»</p>
+      <ul class="reasons-list">
+        <li>
+          <img src="{% static 'landing/img/reasons-item1.jpg' %}" alt="">
+          <p>Не нужно арендовать офис и покупать дорогостоящее оборудование — всю работу вы можете вести из дома</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/reasons-item2.jpg' %}" alt="">
+          <p>Уникальная программа отчетности в онлайн-режиме для клиентов</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/reasons-item3.jpg' %}" alt="">
+          <p>Идеальное решение для старта предпринимательской деятельности</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/reasons-item4.jpg' %}" alt="">
+          <p>Срок окупаемости проекта — 2 месяца</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/reasons-item5.jpg' %}" alt="">
+          <p>Рекламный формат прост, востребован и эффективен уже более 20 лет</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/reasons-item6.jpg' %}" alt="">
+          <p>Простой и легкий бизнес, не требующий специальных навыков и образования</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/reasons-item7.jpg' %}" alt="">
+          <p>Минимальный порог входа: <br> Инвестиции вместе с паушальным взносом составят всего 80 000 рублей!</p>
+          <a href="#popup" class="my-btn fancybox">Получить предложение</a>
+        </li>
+      </ul>
+      <span class="clear">.</span>
+    </div>
+  </section>
+  <section id="about" class="why">
+    <div class="container">
+      <h3>Почему это работает?</h3>
+      <p>Реклама — самый простой и действенный способ увеличить продажи и выйти на новые рынки. Вспомните, откуда вы получили информацию о новом кафе, недорогом такси, открывшемся салоне красоты? Реклама никогда не утратит актуальности, потому что именно она приносит прибыль. Ежегодно открывается множество предприятий. Все они нуждаются в рекламе. Более того, <strong>90% представителей малого и среднего бизнеса начинают рекламную кампанию именно с листовок и объявлений.</strong> Среди них могут быть и ваши клиенты!</p>
+    </div>
+    <div class="photos">
+      <img src="{% static 'landing/img/photo1.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo2.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo3.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo4.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo5.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo6.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo7.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo8.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo9.jpg' %}" alt="Фото">
+      <img src="{% static 'landing/img/photo10.jpg' %}" alt="Фото">
+    </div>
+    <span class="clear">.</span>
+    <div class="container">
+      <p class="last">Расклейка рекламных объявлений на информационных стендах и распространение листовок по почтовым ящикам — самый старый рекламный формат, который востребован и сейчас. Его ценность значительно возросла в годы кризиса! Многие компании урезали рекламный бюджет, перешли на режим экономии и вернулись к старым и проверенным годами методам рекламы — объявлениям на рекламных досках и листовкам в почтовых ящиках. Почему? Это просто, эффективно и недорого. Сомневаетесь? Посмотрите на доски объявлений в вашем городе! Они никогда не пустуют, а значит спрос на услуги расклейки объявлений есть всегда. Аналогично обстоят дела и с листовками в почтовых ящиках.</p>
+    </div>
+  </section>
+  <section id="report" class="control">
+    <div class="container">
+      <h3><span>«</span>Контроль расклейки и распространения объявлений<span>»</span></h3>
+      <p class="description">Уникальная программа отчетности! Покорите рынок с первого раза!</p>
+    </div>
+    <img src="{% static 'landing/img/apple-devices.png' %}" alt="Эпл девайсы">
+    <div class="container">
+      <p>Система отчетности перед рекламодателями — самая большая трудность в этом простом бизнесе. Не беспокойтесь — вы с ней не столкнетесь! Мы уже решили эту проблему и вместе с франшизой предлагаем вам продукт, у которого нет конкурентов — программу контроля исполнения заказов «Контроль расклейки и распространения объявлений».</p>
+      <p>Исполнитель заказа посредством приложения для операционной системы Андроид отмечает с помощью GPS-навигации каждую точку маршрута и делает фотоснимок выполненного заказа, который тут же отправляется на сервер и становится доступен клиенту. Ваши рекламодатели смогут собственными глазами увидеть фотографии проделанной работы, которые привязана к определенному адресу в онлайн-карте и посмотреть весь маршрут исполнения заказа. Для этого им даже не придется выходить из дома или офиса!</p>
+      <p>Ваши клиенты будут выбирать вас, потому что никто другой не сможет предложить им такой же прозрачной схемы работы. Рекламодатели всегда будут в вас уверены, а доверие — главное условие долгосрочного плодотворного сотрудничества.</p>
+    </div>
+  </section>
+  <section class="form-section-first">
+    <div class="form">
+      <h4>Заполните <span>форму</span></h4>
+      <p>И получите подробную консультацию о франшизе</p>
+      <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+        <input type="text" name="name" placeholder="Ваше имя *">
+        <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
+        <input type="text" name="mail" placeholder="Ваш email *">
+        <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+        <button type="submit" class="my-btn">Получить консультацию</button>
+      </form>
+      <p class="warranty">Мы гарантируем конфиденциальность</p>
+    </div>
+  </section>
+  <section class="proposal">
+    <div class="container">
+      <div class="bad">
+        <h4>Что могут предложить ваши конкуренты?</h4>
+        <img src="{% static 'landing/img/competitors-proposal.jpg' %}" alt="Что могут предложить конкуренты">
+        <p>Отчет о работе в текстовом формате и совместный выезд по избранным адресам, участвующим в рекламной акции. При таком подходе клиент не может быть до конца уверен, что каждая листовка попала по назначению, а не была выброшена в мусорную корзину....</p>
+      </div>
+      <div class="good">
+        <h4>Что сможет предложить ваша компания?</h4>
+        <img src="{% static 'landing/img/our-proposal.jpg' %}" alt="Что сможет предложить ваша компания">
+        <p>Ваши рекламодатели смогут проверить выполнение заказа по каждому адресу в удаленном режиме. Более чем убедительный довод, чтобы выбрать вас, а не конкурентов, не так ли?</p>
+        <p>Благодаря программе вы сможете предложить вашим клиентам распространение листовок по почтовым ящикам в новостройках, элитных домах, на территории частного сектора. Рекламодатели редко заказывают такую услугу у конкурентов ввиду отсутствия возможности проверить выполнение работы. Для вас это не проблема! К тому же, такие услуги стоят дороже, нежели обычная адресная программа.</p>
+      </div>
+      <span class="clear">.</span>
+    </div>
+  </section>
+  <section id="advantages">
+    <div class="container">
+      <h3>Преимущества рекламного <span>бизнеса</span></h3>
+      <p class="agency">По франшизе агентства «Дружба»</p>
+      <ul class="advantages-list">
+        <li>
+          <img src="{% static 'landing/img/advantages-item-img1.jpg' %}" alt="Простота">
+          <div>
+            <h4>Простота</h4>
+            <p class="text">Вы получите полностью работоспособную и автоматизированную схему, которая будет приносить вам от 50 000 рублей чистой прибыли в месяц. Вам не придется постигать премудрости ведения бизнеса методом «проб и ошибок». Вы покупаете готовую к использованию модель, с помощью которой вы составите серьезную конкуренцию действующим участникам рекламного рынка в вашем городе.</p>
+          </div>
+          <span class="clear">.</span>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/advantages-item-img2.jpg' %}" alt="Невысокая стоимость">
+          <div>
+            <h4>Невысокая стоимость</h4>
+            <p class="text">Ваши затраты на открытие бизнеса составят всего 80 000 рублей вместе с паушальным взносом.</p>
+            <p class="text margin">На первоначальной стадии развития вам не понадобится офис и штат постоянных сотрудников. Со всей работой вы можете справиться самостоятельно</p>
+          </div>
+          <span class="clear">.</span>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/advantages-item-img3.jpg' %}" alt="Конкурентное преимущество прямо на старте">
+          <div>
+            <h4>Конкурентное преимущество прямо на старте</h4>
+            <p class="text">Благодаря специальной программе контроля, которая не оставит рекламодателям никаких сомнений в том, что заказ был выполнен качественно с точностью до одного адреса и одной листовки, вы всегда будете впереди конкурентов.</p>
+            <p class="text margin">Ваши клиенты будут вам доверять и обращаться к вам снова и снова!</p>
+          </div>
+          <span class="clear">.</span>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/advantages-item-img4.jpg' %}" alt="Высокая ликвидность">
+          <div>
+            <h4>Высокая ликвидность</h4>
+            <p class="text">Если по какой-либо причине вы больше не захотите заниматься рекламным бизнесом, вы легко сможете его продать. Ваш товар очень быстро найдет покупателя, поскольку вы сможете ему предложить работающую схему ведения бизнеса, которая уже приносит деньги. Благодаря автоматизации всех финансовых вопросов и действий по работе с клиентами и исполнителями в программе, ваш покупатель получит не только доступ к уникальному методу онлайн-отчетности, но и наработанную базу рекламодателей.</p>
+          </div>
+          <span class="clear">.</span>
+        </li>
+      </ul>
+      <div class="every-year">
+        <h3>С каждым годом цена вашего бизнеса будет только увеличиваться</h3>
+        <p>Сделайте выгодную инвестицию в будущее!</p>
+        <a href="#popup" class="my-btn fancybox">Получить консультацию</a>
+        <p class="warranty">Мы гарантируем конфиденциальность</p>
+      </div>
+      <div id="included">
+        <h3 class="included">Что еще входит в стоимость франшизы</h3>
+        <p class="agency">Рекламного агентства «Дружба»?</p>
+        <p class="text">Компаний, которые занимаются расклейкой объявлений и распространением листовок по почтовым ящикам, много. Фирм, использующих инновации, практически нет. Вы сможете захватить до 50% рекламного рынка в вашем городе благодаря современным технологиям работы и автоматизации всех процессов.</p>
+        <p class="text margin">Вы получите полностью автоматизированную схему работы, благодаря которой вы сможете грамотно управлять вашим бизнесом, контролировать поступление и расходование средств, анализировать результаты. Мы научим вас зарабатывать от 50 000 рублей в месяц с помощью простого и легкого метода работы. Уже через 2 месяца вы окупите первоначальные вложения и начнете работать на прибыль.</p>
+      </div>
+    </div>
+  </section>
+  <section class="together">
+    <div class="container">
+      <h3>Вместе с подробной инструкцией по созданию бизнеса</h3>
+      <p class="get">В рамках франшизы вы получите</p>
+      <ul class="get-list">
+        <li>
+          <img src="{% static 'landing/img/get-item-img1.png' %}" alt="Продающий сайт">
+          <p>Продающий сайт и все входящие заявки клиентов в вашем городе</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/get-item-img2.png' %}" alt="CRM-системa">
+          <p>CRM-систему, которая упрощает работу с клиентами на каждом этапе взаимодействия</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/get-item-img3.png' %}" alt="Системa управления продажами">
+          <p>Систему управления продажами — вы в любой момент сможете получить всю необходимую информацию о состоянии ваших финансов</p>
+        </li>
+        <li>
+          <img src="{% static 'landing/img/get-item-img4.png' %}" alt="Программa отчетности">
+          <p>Программу отчетности по заказам перед клиентами</p>
+        </li>
+      </ul>
+      <span class="clear">.</span>
+      <p>Получите свой первый опыт предпринимательской деятельности вместе с франшизой рекламного агентства «Дружба» и зарабатывайте от 50 000 рублей в месяц без опыта и больших капиталовложений!</p>
+    </div>
+  </section>
+  <section id="contacts">
+    <h3>Наши контакты</h3>
+    <p>Свяжитесь с нами</p>
+    <address>г. Волгоград, ул. Грушевская, 10, 4 этаж, оф. 1, 2</address>
+    <address class="number">8 (800) 250-34-50</address>
+  </section>
+  <section class="form-section-second">
+    <div id="ya_map">
+      <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap;
+        function init(){
+          myMap = new ymaps.Map("ya_map", {
+            center: [52.573871,57.674484],
+            zoom: 5,
+          //	type: 'yandex#satellite'
+          });
 
-					function init(){     
-						myMap = new ymaps.Map("ya_map", {
-							center: [57.672871,54.674484],
-							zoom: 5,
-						//	type: 'yandex#satellite'
-						});
-						
-						// Создание метки 
-						var coords = [{% for city in CITY_LIST %}[{{ city.coord_y|safe }}, {{ city.coord_x|safe }}],{% endfor %}],
-							myCollection = new ymaps.GeoObjectCollection({}, {
-							   preset: 'islands#redIcon', //все метки красные
-							   draggable: false // и их можно перемещать
-							});
+          // Создание метки
+          var coords = [
+            [55.75396, 37.620393],[56.129042, 40.40703],[54.629169, 39.734928],[56.852775, 53.211463]
+          ],
+            myCollection = new ymaps.GeoObjectCollection({}, {
+               preset: 'islands#redIcon', //все метки красные
+               draggable: false // и их можно перемещать
+            });
 
-						for (var i = 0; i < coords.length; i++) {
-							myCollection.add(new ymaps.Placemark(
-								coords[i], {}, {
-									iconLayout: 'default#image',
-									iconImageHref: '{% static 'landing/images/mark.png' %}',
-									iconImageSize: [18, 26],
-									iconImageOffset: [-9, -26]
-								}
-							));
-						}
-						
-						myMap.geoObjects.add(myCollection);
-						myMap.behaviors.disable('scrollZoom');
-					}
-				</script>
-		</section>
-		<footer class="footer">
-			<div class="holder">
-				<div class="footer-logo"><img src="{% static 'landing/images/logo.png' %}" alt=""></div>
-				<div class="copy"><a href="#hidden-block" class="fancybox">Политика конфиденциальности</a><br>
-				РА «Дружба» &copy; 2015</div>
-				<a href="http://5lands.ru/" target="_blank" class="studio">
-					Дизайн сайта<br>
-					<img src="{% static 'landing/images/studio.png' %}" alt="">
-				</a>
-				<div class="footer-phone">{{ SETUP.phone|safe|default:'' }}</div>
-				<div id="hidden-block">
-					<h2>Политика конфиденциальности</h2>
-					<p>Мы не собираем личную информацию о Вас, когда Вы заходите на наш сайт. 
-					Вы можете анонимно просматривать сайт. Тем не менее, Ваш браузер все же автоматически сообщает нам тип компьютера и операционной системы, которые Вы используете. Единственная личная информация о Вас, которую мы получаем, это те данные, которые Вы добровольно предоставляете при заполнении форм.
-					При заполнении форм на сайте у Вас запросят персональную информацию, такую как имя, номер телефона. Предоставление такой информации в ответ на запрос осуществляется Вами исключительно добровольно. 
-					Предоставленная Вами информация используется чтобы оказать те услуги, которые Вы сами запрашиваете.
-					</p>
-				</div>
-			</div>	
-		</footer>	
-		<!--   Всплывающие окна  -->
-		<div id="popup">	
-			<div class="video-popup">
-				{{ SETUP.video_franchise|safe|default:'' }}
-			</div>
-		</div>
-		<div id="boxes">
-			<div id="dialog" class="window">
-				<div class="tablet-popup">
-					<div class="tablet-video">
-						{{ SETUP.video_client|safe|default:'' }}
-					</div>
-				</div>
-			</div>
-			<div id="mask"></div>
-		</div>
-		<!--   Всплывающие окна end  -->
-	</div>
+          for (var i = 0; i < coords.length; i++) {
+            myCollection.add(new ymaps.Placemark(
+              coords[i]));
+          }
+
+          myMap.geoObjects.add(myCollection);
+          myMap.behaviors.disable('scrollZoom');
+        }
+      </script>
+    </div>
+    <div class="form">
+      <h4>Заполните форму</h4>
+      <p>и получите презентацию с перечнем свободных городов</p>
+      <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+        <input type="text" name="name" placeholder="Ваше имя *">
+        <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
+        <input type="text" name="mail" placeholder="Ваш email *">
+        <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+        <button type="submit" class="my-btn">Получить консультацию</button>
+      </form>
+      <span class="clear">.</span>
+      <p class="warranty">Мы гарантируем конфиденциальность</p>
+    </div>
+  </section>
+  <p class="site">Хотите посмотреть, как будет выглядеть ваш будущий сайт? <a href="http://reklamadoma.ru/">Смотрите тут</a></p>
+  <footer>
+    <div class="container">
+      <span class="clear">.</span>
+      <a href="index.html" class="logo"><img src="{% static 'landing/img/logo.png' %}" alt="Дружба"></a>
+      <p class="copy"><a href="#polityc" class="fancybox">Политика конфиденциальности</a> РА «Дружба» © <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script></p>
+      <a href="http://5lands.ru/" class="lands" target="_blank">
+        <p>Дизайн сайта</p>
+        <img src="{% static 'landing/img/5lands.png' %}" alt="5lands">
+      </a>
+      <address>8 800 250-34-50</address>
+      <span class="clear">.</span>
+    </div>
+  </footer>
+  <div id="popup" class="form" style="display: none;">
+    <h4>Заполните <span>форму</span></h4>
+    <p>И узнайте все условия открытия вашего бизнеса</p>
+    <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+      <input type="text" name="name" placeholder="Ваше имя *">
+      <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
+      <input type="text" name="mail" placeholder="Ваш email *">
+      <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+      <button type="submit" class="my-btn">Получить информацию</button>
+    </form>
+    <p class="warranty">Мы гарантируем конфиденциальность</p>
+  </div>
+  <div id="video">
+    <div class="ipad">
+      {{ SETUP.video|safe|default:'' }}
+    </div>
+  </div>
+  <div id="polityc">
+    <h2>Политика конфиденциальности</h2>
+    <p>Мы не собираем личную информацию о Вас, когда Вы заходите на наш сайт.
+    Вы можете анонимно просматривать сайт. Тем не менее, Ваш браузер все же автоматически сообщает нам тип компьютера и операционной системы, которые Вы используете. Единственная личная информация о Вас, которую мы получаем, это те данные, которые Вы добровольно предоставляете при заполнении форм.
+    При заполнении форм на сайте у Вас запросят персональную информацию, такую как имя, номер телефона. Предоставление такой информации в ответ на запрос осуществляется Вами исключительно добровольно.
+    Предоставленная Вами информация используется чтобы оказать те услуги, которые Вы сами запрашиваете.
+    </p>
+  </div>
+
 {{ SETUP.bottom_js|safe|default:'' }}
 </body>
 </html>
