@@ -1,3 +1,4 @@
+# coding=utf-8
 import socket
 
 __author__ = 'alexy'
@@ -30,6 +31,12 @@ AUTH_USER_MODEL = 'core.User'
 LOGIN_URL = '/cabinet/login/'
 
 LANGUAGE_CODE = 'ru-ru'
+
+LANGUAGES = (
+    ('ru', u'Русский'),
+    ('uk', u'Украинский'),
+    ('kk', u'Казахский'),
+)
 
 TIME_ZONE = 'UTC'
 

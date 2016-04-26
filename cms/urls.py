@@ -16,6 +16,8 @@ urlpatterns = patterns(
     url(r'', include('core.urls')),
     url(r'', include('apps.landing.urls', namespace='landing')),
     url(r'ticket/', include('apps.ticket.urls', namespace='ticket')),
+    url(r'city/', include('apps.city.urls', namespace='city')),
+    (r'^i18n/', include('django.conf.urls.i18n')),
 )
 
 if settings.DEBUG:

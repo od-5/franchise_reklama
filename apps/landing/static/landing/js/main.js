@@ -3,15 +3,36 @@ jQuery(function($){
     $('.ipad').toggleClass( 'top' )
   });
 
-  $('.languages-list').click(function(){
+  // Выбор языка
+  $('.languages-list').hover(function(){
     $(this).toggleClass('active')
   });
+  $('.languages-list a').click(function(){
+    var url = $(this).parents('.languages-list').data('url');
+    console.log(url);
+    var csrfmiddlewaretoken = $('.languages-list input[name=csrfmiddlewaretoken]').val();
+    console.log(csrfmiddlewaretoken);
+    var language = $(this).data('language');
+    console.log(language);
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: {
+        language: language,
+        csrfmiddlewaretoken: csrfmiddlewaretoken
+      },
+      success: function(){
+        location.reload();
+      }
+    });
+  });
+
 
   $('.fancybox').fancybox({
             padding : 0,
         });
 
-  $('form').each(function(){
+  $('.ticket_form').each(function(){
     $(this).validate({
       rules: {
         name: {
@@ -28,14 +49,14 @@ jQuery(function($){
       }
     });
   });
-  $('form').ajaxForm({
+  $('.ticket_form').ajaxForm({
     success: function(data){
       if (data.success) {
-        $('form').resetForm();
+        $('.ticket_form').resetForm();
         $.notify(data.success, 'success');
       } else {
         $.notify(data.success, 'error');
-        $('form').resetForm();
+        $('.ticket_form').resetForm();
       }
     }
   });
@@ -70,6 +91,7 @@ jQuery(function($){
     scrollTop: $(el).offset().top}, 2000);
     return false;
   });
+
 
 
 });

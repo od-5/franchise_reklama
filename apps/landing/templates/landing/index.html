@@ -23,26 +23,44 @@
   {{ SETUP.top_js|safe|default:'' }}
 </head>
 <body>
+{% load i18n %}
   <header>
     <div class="container">
       <p><span>Бизнес</span>, с которым <span>справится</span> даже <span class="number">1</span> <span>человек</span></p>
       <div class="phone">
-        <ul class="languages-list">
-          <li class="russian choose">
-            <a href="#">
-            Русский
+        <ul class="languages-list" data-url="{% url 'set_language' %}">
+          {% get_current_language as LANGUAGE_CODE %}
+          <li class="{{ LANGUAGE_CODE }} choose">
+            <a href="#" data-language="{{ LANGUAGE_CODE }}">
+            {{ LANGUAGE_CODE|language_name_local }}
             </a>
           </li>
-          <li class="ukrainian">
-            <a href="#">
-            Украинский
+        {% csrf_token %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+          {% if language.code != LANGUAGE_CODE %}
+          <li class="{{ language.code }}">
+            <a data-language="{{ language.code }}">
+            {{ language.name_local }}
             </a>
           </li>
-          <li class="english">
-            <a href="#">
-            Казахский
-            </a>
-          </li>
+          {% endif %}
+        {% endfor %}
+{#          <li class="russian choose">#}
+{#            <a href="#">#}
+{#            Русский#}
+{#            </a>#}
+{#          </li>#}
+{#          <li class="ukrainian">#}
+{#            <a href="#">#}
+{#            Украинский#}
+{#            </a>#}
+{#          </li>#}
+{#          <li class="english">#}
+{#            <a href="#">#}
+{#            Казахский#}
+{#            </a>#}
+{#          </li>#}
         </ul>
         <address>{{ SETUP.phone|default:'8 800 250-34-50' }}</address>
       </div>
@@ -66,7 +84,7 @@
       <div class="form">
         <h4>Заполните <span>форму</span></h4>
         <p>И узнайте все условия открытия вашего бизнеса</p>
-        <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+        <form action="{% url 'ticket:send' %}" class="ticket_form" method="post">{% csrf_token %}
           <input type="text" name="name" placeholder="Ваше имя *">
           <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
           <input type="text" name="mail" placeholder="Ваш email *">
@@ -179,7 +197,7 @@
     <div class="form">
       <h4>Заполните <span>форму</span></h4>
       <p>И получите подробную консультацию о франшизе</p>
-      <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+      <form action="{% url 'ticket:send' %}" class="ticket_form" method="post">{% csrf_token %}
         <input type="text" name="name" placeholder="Ваше имя *">
         <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
         <input type="text" name="mail" placeholder="Ваш email *">
@@ -292,14 +310,14 @@
     <address class="number">8 (800) 250-34-50</address>
   </section>
   <section class="form-section-second">
-    <div id="ya_map">
+    <div id="ya_map" data-url="{% url 'city:map' %}">
       <script type="text/javascript">
         ymaps.ready(init);
         var myMap;
         function init(){
           myMap = new ymaps.Map("ya_map", {
             center: [52.573871,57.674484],
-            zoom: 5,
+            zoom: 6,
           //	type: 'yandex#satellite'
           });
 
@@ -312,11 +330,20 @@
                draggable: false // и их можно перемещать
             });
 
-          for (var i = 0; i < coords.length; i++) {
-            myCollection.add(new ymaps.Placemark(
-              coords[i]));
-          }
-
+          var city_map_url = $('#ya_map').data('url');
+          $.get(city_map_url,
+            function(e) {
+              function outputItem(item, i, e) {
+                  myCollection.add(
+                      new ymaps.Placemark([item['coord_y'], item['coord_x']], {
+                      balloonContent: item['name'],
+                      hintContent: item['name']
+                      })
+                  );
+              }
+              e.forEach(outputItem);
+            }
+          );
           myMap.geoObjects.add(myCollection);
           myMap.behaviors.disable('scrollZoom');
         }
@@ -325,7 +352,7 @@
     <div class="form">
       <h4>Заполните форму</h4>
       <p>и получите презентацию с перечнем свободных городов</p>
-      <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+      <form action="{% url 'ticket:send' %}" class="ticket_form" method="post">{% csrf_token %}
         <input type="text" name="name" placeholder="Ваше имя *">
         <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
         <input type="text" name="mail" placeholder="Ваш email *">
@@ -353,7 +380,7 @@
   <div id="popup" class="form" style="display: none;">
     <h4>Заполните <span>форму</span></h4>
     <p>И узнайте все условия открытия вашего бизнеса</p>
-    <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+    <form action="{% url 'ticket:send' %}" class="ticket_form" method="post">{% csrf_token %}
       <input type="text" name="name" placeholder="Ваше имя *">
       <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
       <input type="text" name="mail" placeholder="Ваш email *">

@@ -111,7 +111,9 @@ header .languages-list {
 header .languages-list a {
   position: relative;
   color: #000;
+  padding-right: 10px;
   font: 400 12px/25px "Open Sans";
+  cursor: pointer;
 }
 
 header .languages-list a:hover {
@@ -128,15 +130,15 @@ header li a:before {
   height: 11px;
 }
 
-header .russian a:before {
+header .ru a:before {
   background: url(../img/flag1.png);
 }
 
-header .ukrainian a:before {
+header .uk a:before {
   background: url(../img/flag3.png);
 }
 
-header .english a:before {
+header .kk a:before {
   background: url(../img/flag2.png);
 }
 
@@ -144,11 +146,12 @@ header .choose a:after {
   content: '';
   position: absolute;
   top: 7px;
-  right: -25px;
+  right: -10px;
   display: block;
   width: 6px;
   height: 3px;
   background: url(../img/arrow1.png);
+  background-repeat: no-repeat;
 }
 
 header .active {
