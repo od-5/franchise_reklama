@@ -962,3 +962,16 @@ footer address {
 .thnx {
   margin-top: 100px;
 }
+
+.footer-download {
+  line-height: 50px;
+  text-align: center;
+}
+.footer-download a {
+  display: inline-block;
+  height: 50px;
+}
+.footer-download a img {
+  width: 130px;
+  vertical-align: middle;
+}

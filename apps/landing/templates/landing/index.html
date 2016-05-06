@@ -64,7 +64,7 @@
         </ul>
         <address>{{ SETUP.phone|default:'8 800 250-34-50' }}</address>
       </div>
-      <h1><a href="index.html"><img src="{% static 'landing/img/logo.png' %}" alt="Дружба"></a></h1>
+      <h1><a href="{% url 'landing:index' %}"><img src="{% static 'landing/img/logo.png' %}" alt="Дружба"></a></h1>
     </div>
   </header>
   <nav>
@@ -364,6 +364,12 @@
     </div>
   </section>
   <p class="site">Хотите посмотреть, как будет выглядеть ваш будущий сайт? <a href="http://reklamadoma.com/">Смотрите тут</a></p>
+  <div class="container">
+    <div class="footer-download">
+      <span class="footer-download-text">Скачать приложение </span>
+      <a href=""><img src="{% static 'landing/img/googleplay.png' %}" alt=""></a>
+    </div>
+  </div>
   <footer>
     <div class="container">
       <span class="clear">.</span>
