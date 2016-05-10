@@ -6,9 +6,10 @@ __author__ = 'alexy'
 
 def site_setup(request):
     try:
-        qss = Setup.objects.all().first()
+        qs = Setup.objects.first()
     except:
-        qss = None
+        qs = None
+    print qs
     return {
-        'SETUP': qss,
+        'SETUP': qs
     }

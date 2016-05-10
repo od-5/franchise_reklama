@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no">
-  <title>{{ SETUP.meta_title|default:'Заголовок сайта' }}Рекламное агентство «Дружба»</title>
+  <title>{{ SETUP.title|default:'Заголовок сайта' }}</title>
   {% load staticfiles %}
   <meta name="keywords" content="{{ SETUP.meta_key|safe|default:'' }}">
 	<meta name="description" content="{{ SETUP.meta_desc|safe|default:'' }}">
@@ -62,7 +62,7 @@
 {#            </a>#}
 {#          </li>#}
         </ul>
-        <address>{{ SETUP.phone|default:'8 800 250-34-50' }}</address>
+        <address>{{ SETUP.phone|default:'' }}</address>
       </div>
       <h1><a href="{% url 'landing:index' %}"><img src="{% static 'landing/img/logo.png' %}" alt="Дружба"></a></h1>
     </div>
@@ -88,7 +88,7 @@
           <input type="text" name="name" placeholder="Ваше имя *">
           <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
           <input type="text" name="mail" placeholder="Ваш email *">
-          <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+          <input type="hidden" name="theme" value="Условия открытия бизнеса">
           <button type="submit" class="my-btn">Получить информацию</button>
         </form>
         <p class="warranty">Мы гарантируем конфиденциальность</p>
@@ -201,7 +201,7 @@
         <input type="text" name="name" placeholder="Ваше имя *">
         <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
         <input type="text" name="mail" placeholder="Ваш email *">
-        <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+        <input type="hidden" name="theme" value="Консультация по франшизе">
         <button type="submit" class="my-btn">Получить консультацию</button>
       </form>
       <p class="warranty">Мы гарантируем конфиденциальность</p>
@@ -306,8 +306,8 @@
   <section id="contacts">
     <h3>Наши контакты</h3>
     <p>Свяжитесь с нами</p>
-    <address>г. Волгоград, ул. Грушевская, 10, 4 этаж, оф. 1, 2</address>
-    <address class="number">8 (800) 250-34-50</address>
+    <address>{{ SETUP.address|default:'' }}</address>
+    <address class="number">{{ SETUP.phone|default:'' }}</address>
   </section>
   <section class="form-section-second">
     <div id="ya_map" data-url="{% url 'city:map' %}">
@@ -356,7 +356,7 @@
         <input type="text" name="name" placeholder="Ваше имя *">
         <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
         <input type="text" name="mail" placeholder="Ваш email *">
-        <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+        <input type="hidden" name="theme" value="Презентация с перечнем свободных городов">
         <button type="submit" class="my-btn">Получить консультацию</button>
       </form>
       <span class="clear">.</span>
@@ -379,7 +379,7 @@
         <p>Дизайн сайта</p>
         <img src="{% static 'landing/img/5lands.png' %}" alt="5lands">
       </a>
-      <address>8 800 250-34-50</address>
+      <address>{{ SETUP.phone|default:'' }}</address>
       <span class="clear">.</span>
     </div>
   </footer>
@@ -390,7 +390,7 @@
       <input type="text" name="name" placeholder="Ваше имя *">
       <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __">
       <input type="text" name="mail" placeholder="Ваш email *">
-      <input type="hidden" name="theme" value="Заявка - исполнитель ООО Рекламные системы">
+      <input type="hidden" name="theme" value="Условия открытия бизнеса">
       <button type="submit" class="my-btn">Получить информацию</button>
     </form>
     <p class="warranty">Мы гарантируем конфиденциальность</p>
