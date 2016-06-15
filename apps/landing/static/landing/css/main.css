@@ -975,3 +975,16 @@ footer address {
   width: 130px;
   vertical-align: middle;
 }
+
+.video__link {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #f1f1f1;
+}
+.video__link a {
+  color: #0072bc;
+  text-decoration: underline;
+  font-weight: bold;
+  line-height: 50px;
+}
