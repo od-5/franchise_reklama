@@ -49,17 +49,17 @@ jQuery(function($){
       }
     });
   });
-  $('.ticket_form').ajaxForm({
-    success: function(data){
-      if (data.success) {
-        $('.ticket_form').resetForm();
-        $.notify(data.success, 'success');
-      } else {
-        $.notify(data.success, 'error');
-        $('.ticket_form').resetForm();
-      }
-    }
-  });
+  //$('.ticket_form').ajaxForm({
+  //  success: function(data){
+  //    if (data.success) {
+  //      $('.ticket_form').resetForm();
+  //      $.notify(data.success, 'success');
+  //    } else {
+  //      $.notify(data.success, 'error');
+  //      $('.ticket_form').resetForm();
+  //    }
+  //  }
+  //});
 
 
   $(window).scroll(function(){

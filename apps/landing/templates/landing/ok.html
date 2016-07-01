@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  {% load staticfiles %}
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<title>Рекламное агентство «Дружба»</title>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="fancy-box/jquery.fancybox.css">
-	<link rel="stylesheet" href="css/main.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="js/jquery.maskedinput.js"></script>
-	<script src="fancy-box/jquery.fancybox.js"></script>
-	<script src="js/scrollspy.js"></script>
+	<link rel="stylesheet" href="{% static 'landing/css/normalize.css' %}">
+	<link rel="stylesheet" href="{% static 'landing/fancy-box/jquery.fancybox.css' %}">
+	<link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js' %}"></script>
+	<script src="{% static 'landing/js/jquery.maskedinput.js' %}"></script>
+	<script src="{% static 'landing/fancy-box/jquery.fancybox.js' %}"></script>
+	<script src="{% static 'landing/js/scrollspy.js' %}"></script>
 	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-	<!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
-	<script src="js/main.js"></script>
+	<!--[if lt IE 10]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
+	<script src="{% static 'landing/js/main.js' %}"></script>
 	<script type="text/javascript">
-		setTimeout('location.replace("index.html")', 3000);
+		setTimeout('location.replace("{% url 'landing:index' %}")', 5000);
 	</script>
+  {{ SETUP.top_js|safe|default:'' }}
 </head>
 <body>
 	<div class="container thnx">
 		<div class="thnx-text">
-			СПАСИБО ЗА ВАШУ ЗАЯВКУ МЫ СВЯЖЕМСЯ С ВАМИ ЧЕРЕЗ НЕСКОЛЬКО МИНУТ
+			Спасибо за заявку. Мы свяжемся с Вами в ближайшее время.
 		</div>	
 	</div>
+{{ SETUP.bottom_js|safe|default:'' }}
 </body>
 </html>

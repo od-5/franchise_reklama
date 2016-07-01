@@ -2,6 +2,8 @@
 from annoying.decorators import ajax_request
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Setup
 from .forms import TicketForm
@@ -9,7 +11,6 @@ from .forms import TicketForm
 __author__ = 'alexy'
 
 
-@ajax_request
 @csrf_exempt
 def ticket_send(request):
     try:
@@ -33,10 +34,8 @@ def ticket_send(request):
                 settings.DEFAULT_FROM_EMAIL,
                 [email, ]
             )
-        return {
-            'success': u'Ваша заявка принята!'
-        }
-    else:
-        return {
-            'error': u'Заявка не была отправлена. Обновите страницу и попробуйте ещё раз.'
-        }
+    return HttpResponseRedirect(reverse('landing:thnx'))
+    # else:
+    #     return {
+    #         'error': u'Заявка не была отправлена. Обновите страницу и попробуйте ещё раз.'
+    #     }
