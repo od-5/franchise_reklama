@@ -257,7 +257,7 @@ nav .active {
 .open-business .description {
   position: relative;
   width: 415px;
-  margin: 95px 0 80px;
+  margin: 95px 0 30px;
   padding-left: 46px;
 }
 
@@ -274,6 +274,7 @@ nav .active {
 .open-business .link {
   color: #FFF;
   overflow: hidden;
+  padding-bottom: 30px;
 }
 
 .open-business .link .hover {
@@ -292,7 +293,7 @@ nav .active {
   content: '';
   position: absolute;
   top: 25px;
-  left: -133px;
+  left: -130px;
   display: block;
   width: 105px;
   height: 57px;
@@ -301,10 +302,20 @@ nav .active {
 
 .open-business .ipad {
   position: relative;
-  top: 30px;
+  /*top: 30px;*/
   transition: all 0.5s;
+  display: inline-block;
 }
-
+.open-business .ipad iframe {
+  position: absolute;
+  top: 22px;
+  left: 45px;
+  height: 308px;
+  width: 409px;
+}
+.open-business .ipad img {
+  width: 500px;
+}
 .open-business .top {
   top: 5px;
   transition: all 0.5s;

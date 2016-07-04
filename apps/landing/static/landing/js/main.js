@@ -1,7 +1,7 @@
 jQuery(function($){
-  $('.link a').hover(function() {
-    $('.ipad').toggleClass( 'top' )
-  });
+  //$('.link a').hover(function() {
+  //  $('.ipad').toggleClass( 'top' )
+  //});
 
   // Выбор языка
   $('.languages-list').hover(function(){

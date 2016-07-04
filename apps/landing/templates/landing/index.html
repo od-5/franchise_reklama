@@ -100,9 +100,12 @@
         <p class="salary">И зарабатывайте <span>от 50 000 рублей в месяц</span> без опыта и больших капиталовложений!</p>
         <p class="description"><span></span>Откройте собственное рекламное агентство по распространению листовок по почтовым ящикам и расклейке объявлений на информационных стендах. Все бизнес-процессы полностью автоматизированы.</p>
         <div class="link">
-          <a class="ipad fancybox" href="#video">
-            <img src="{% static 'landing/img/ipad.png' %}" alt="ipad">
-          </a>
+{#          <a class="ipad fancybox" href="#video">#}
+          <div class="ipad">
+            <img src="{% static 'landing/img/tablet2.png' %}" alt="ipad">
+            {{ SETUP.video|safe|default:'' }}
+          </div>
+{#          </a>#}
           <a class="hover fancybox" href="#video">
             Программная разработка, не имеющая аналогов в рекламной сфере «Контроль расклейки и распространения объявлений»
           </a>
