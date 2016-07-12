@@ -1009,3 +1009,7 @@ footer address {
   font-weight: bold;
   line-height: 50px;
 }
+.demo_link {
+  font-weight: bold;
+  text-shadow: 0 0 10px #FF6666;
+}
