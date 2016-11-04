@@ -32,7 +32,7 @@
 }
 
 body {
-  min-width: 960px;
+  min-width: 320px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -50,7 +50,8 @@ label.error {
 }
 
 .container {
-  width: 960px;
+  max-width: 960px;
+  padding: 0 10px;
   margin: 0 auto;
 }
 
@@ -61,7 +62,7 @@ label.error {
   clear: both;
 }
 
-header .container {
+header {
   padding: 30px 0;
 }
 
@@ -131,15 +132,15 @@ header li a:before {
 }
 
 header .ru a:before {
-  background: url(../img/flag1.png);
+  background: url(../images/flag1.png);
 }
 
 header .uk a:before {
-  background: url(../img/flag3.png);
+  background: url(../images/flag3.png);
 }
 
 header .kk a:before {
-  background: url(../img/flag2.png);
+  background: url(../images/flag2.png);
 }
 
 header .choose a:after {
@@ -150,7 +151,7 @@ header .choose a:after {
   display: block;
   width: 6px;
   height: 3px;
-  background: url(../img/arrow1.png);
+  background: url(../images/arrow1.png);
   background-repeat: no-repeat;
 }
 
@@ -166,6 +167,12 @@ header address {
   text-transform: uppercase;
   font: 300 35px "Open Sans";
 }
+.header-logo {float: left;}
+header:after {
+    display: block;
+    content: '';
+    clear: both;
+}
 
 nav {
   position: fixed;
@@ -180,6 +187,7 @@ nav {
 nav .container {
   padding: 15px 0;
 }
+.nav-icon {display: none;}
 
 nav ul {
   margin: 0;
@@ -218,9 +226,12 @@ nav .active {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   transition: top 0.5s;
 }
+.nav-close  {display: none}
+
+.open-business-hidden {display: none;}
 
 .open-business {
-  background: url(../img/bg_open-business.jpg) center top no-repeat;
+  background: url(../images/bg_open-business.jpg) center top no-repeat;
   background-size: cover;
 }
 
@@ -268,7 +279,7 @@ nav .active {
   left: 0;
   width: 28px;
   height: 24px;
-  background: url("../img/quote.png");
+  background: url("../images/quote.png");
 }
 
 .open-business .link {
@@ -297,7 +308,7 @@ nav .active {
   display: block;
   width: 105px;
   height: 57px;
-  background: url(../img/arrow.png);
+  background: url(../images/arrow.png);
 }
 
 .open-business .ipad {
@@ -375,12 +386,10 @@ nav .active {
 }
 
 .reasons {
+  padding: 110px 0 110px;
   background-color: #F7F7F7;
 }
 
-.reasons .container {
-  padding: 110px 0;
-}
 
 .reasons .asks-list {
   margin: 0;
@@ -390,12 +399,13 @@ nav .active {
 
 .reasons .asks-list li {
   float: left;
-  width: 280px;
+  width: 33%;
+  box-sizing: border-box;
+  padding: 0 15px;
+  text-align: center;
 }
 
-.reasons .asks-list li:not(:last-child) {
-  margin-right: 60px;
-}
+
 
 .reasons .asks-list p {
   margin: 0;
@@ -403,25 +413,13 @@ nav .active {
   text-align: center;
 }
 
-.reasons .asks-list p:before {
-  content: '';
-  display: block;
-  width: 105px;
-  height: 105px;
-  margin: 0 auto 45px;
+.asks-list-img {
+    display: block;
+    height: 105px;
+    margin: 0 0 45px;
+    line-height: 105px;
 }
-
-.reasons .asks-list .asks-item1:before {
-  background: url(../img/asks-item1.png) center center no-repeat;
-}
-
-.reasons .asks-list .asks-item2:before {
-  background: url(../img/asks-item2.png) center center no-repeat;
-}
-
-.reasons .asks-list .asks-item3:before {
-  background: url(../img/asks-item3.png) center center no-repeat;
-}
+.asks-list-img img {vertical-align: middle;}
 
 .reasons h3 {
   margin: 90px 0 0;
@@ -446,33 +444,29 @@ nav .active {
 }
 
 .reasons .reasons-list li {
-  float: left;
-  width: 50%;
-  height: 108px;
-  margin: 0;
-  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  width: 33%;
+  margin: 0 0 30px;
 }
 
-.reasons .reasons-list li:last-child {
-  width: 100%;
-  height: 112px;
-}
+/*.reasons .reasons-list li:last-child {*/
+  /*width: 100%;*/
+/*}*/
 
-.reasons .reasons-list li:last-child p {
-  width: 100%;
-}
+/*.reasons .reasons-list li:last-child p {*/
+  /*width: 100%;*/
+/*}*/
 
-.reasons .reasons-list img {
-  float: left;
-  width: 68px;
-  height: 68px;
-  margin-right: 28px;
-  border-radius: 50%;
-}
+/*.reasons .reasons-list img {*/
+  /*float: left;*/
+  /*width: 68px;*/
+  /*height: 68px;*/
+  /*border-radius: 50%;*/
+/*}*/
 
 .reasons .reasons-list p {
-  width: 425px;
-  margin: 0;
+  margin: 0 20px 0 0;
   font: 300 18px/24px "Open Sans";
 }
 
@@ -503,7 +497,6 @@ nav .active {
 .why .photos img {
   float: left;
   width: 20%;
-  height: 100%;
   box-sizing: border-box;
   padding: 7px;
 }
@@ -549,18 +542,17 @@ nav .active {
 
 .form-section-first {
   position: relative;
-  min-height: 537px;
-  background: url(../img/bg_form.jpg) center top no-repeat;
+  padding: 119px 0 1px;
+  background: url(../images/bg_form.jpg) center top no-repeat;
   background-size: cover;
 }
 
 .form-section-first .form {
-  position: absolute;
-  left: 50%;
-  bottom: -70px;
+  position: relative;
   z-index: 5;
   float: none;
-  margin-left: -172px;
+  padding: 1px 0 0;
+  margin: 0 auto -70px;
 }
 
 .form-section-first .form:before {
@@ -573,7 +565,7 @@ nav .active {
   width: 341px;
   height: 15px;
   margin-left: -170px;
-  background: url(../img/shadow.png);
+  background: url(../images/shadow.png);
 }
 
 .form-section-first .form p {
@@ -591,7 +583,7 @@ nav .active {
   top: 0;
   bottom: 0;
   width: 28px;
-  background: url(../img/slice.png);
+  background: url(../images/slice.png);
 }
 
 .proposal .container div {
@@ -628,11 +620,11 @@ nav .active {
 }
 
 .proposal .container .bad h4:before {
-  background: url(../img/bad.png);
+  background: url(../images/bad.png);
 }
 
 .proposal .container .good h4:before {
-  background: url(../img/good.png);
+  background: url(../images/good.png);
 }
 
 .proposal .container p {
@@ -646,12 +638,10 @@ nav .active {
 }
 
 #advantages {
-  background-color: #F7F7F7;
+ padding: 100px 0; 
+ background-color: #F7F7F7;
 }
 
-#advantages .container {
-  padding: 100px 0;
-}
 
 #advantages h3 {
   margin: 0;
@@ -741,13 +731,11 @@ nav .active {
 }
 
 .together {
-  background: url(../img/bg_together.png) center top no-repeat;
+  padding: 95px 0 100px;
+  background: url(../images/bg_together.png) center top no-repeat;
   background-size: cover;
 }
 
-.together .container {
-  padding: 95px 0 100px;
-}
 
 .together h3 {
   max-width: 765px;
@@ -776,20 +764,23 @@ nav .active {
 }
 
 .together ul li {
-  width: 455px;
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
   margin-bottom: 40px;
+  box-sizing: border-box;
 }
 
 .together ul li:nth-child(odd) {
-  float: left;
+  padding: 0 20px 0 0;
 }
 
 .together ul li:nth-child(even) {
-  float: right;
+  padding: 0 0 0 20px;
 }
 
 .together ul p {
-  margin: 0;
+  margin: 0 0 0 97px;
   overflow: hidden;
   text-align: left;
 }
@@ -798,7 +789,6 @@ nav .active {
   float: left;
   height: 68px;
   width: 68px;
-  margin-right: 28px;
   border-radius: 50%;
 }
 
@@ -845,6 +835,7 @@ nav .active {
   position: absolute;
   left: 50%;
   top: 50%;
+  z-index: 10;
   margin-left: -338px;
   margin-top: -166px;
   width: 675px;
@@ -944,7 +935,7 @@ footer address {
   height: 600px;
   box-sizing: border-box;
   padding: 32px 0 0 70px;
-  background: #333 url(../img/tablet2.png) top center no-repeat;
+  background: #333 url(../images/tablet2.png) top center no-repeat;
   border-radius: 30px;
 }
 #video .ipad iframe {
@@ -1012,4 +1003,534 @@ footer address {
 .demo_link {
   font-weight: bold;
   text-shadow: 0 0 10px #FF6666;
+}
+
+
+
+@media screen and (max-width: 1023px) {
+    header p {display: none;}
+    #advantages .advantages-list li {
+        padding: 40px 40px 40px;
+        margin-bottom: 50px;
+    }
+    #advantages .advantages-list div {
+        padding: 0;
+        margin: 0 0 0 270px;
+        overflow: hidden;
+    }
+    .nav-icon, .nav-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: block;
+    }
+    nav {height: 40px;}
+    nav .nav-block {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 30px 0 20px;
+        background: #fff;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+    nav li {
+        display: block;
+        padding: 7px 10px;
+        text-align: center;
+    }
+    .form-section-second .form {
+        position: relative;
+        left: auto;
+        top: auto;
+        float: none;
+        padding: 1px 0 40px;
+        margin-left: auto;
+        margin-top: 0;
+        margin: 0 auto;
+        width: 620px;
+        height: auto;
+    }
+    .form-section-second #ya_map {
+        position: static;
+        height: 400px;
+    }
+    .footer-download {margin: 0 0 20px;}
+    .site {padding: 0 10px;}
+    footer {padding: 37px 0 38px;}
+    footer .container .logo {
+        float: none;
+        margin: 0 auto 15px;
+        display: block;
+        width: 200px;
+        text-align: center;
+    }
+    footer .container .copy {
+        float: none;
+        margin: 0 auto 15px;
+        text-align: center;
+    }
+    footer .container .lands {
+        float: none;
+        margin: 0 auto 15px;
+        display: block;
+        width: 100px;
+        text-align: center;
+    }
+    footer .container address {
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #video .ipad {
+        width: 710px;
+        height: 535px;
+        padding: 0;
+        background: none;
+    }
+    #video .ipad iframe {
+        width: 710px !important;
+        height: 535px !important;
+    }
+}
+@media screen and (max-width: 960px) {
+    .control h3 {
+        max-width: 875px;
+        width: auto;
+    }
+    .open-hide {display: none;}
+    .open-business-hidden {
+        display: block;
+        margin: 0 0 40px;
+        text-align: center;
+    }
+    .open-business .form {
+        float: none;
+        margin: 0 auto;
+        padding: 1px 0 0;
+    }
+    .open-business .description {
+        position: relative;
+        width: auto;
+        margin: 50px 0 30px;
+        padding-left: 46px;
+    }
+    .ipad {
+        margin: 0 auto;
+    }
+    .open-business .link {text-align: center;}
+    .open-business .link .hover {
+        float: none;
+        display: block;
+        width: auto;
+        height: auto;
+        margin-top: 20px;
+        text-align: left;
+    }
+    .open-business .link .hover:before {display: none;}
+}
+@media screen and (max-width: 800px) {
+
+}
+@media screen and (max-width: 767px) {
+    .header-logo {
+        float: none;
+        text-align: center;
+    }
+    header address {
+        margin: 0;
+        width: auto;
+        color: #000;
+        text-transform: uppercase;
+        font: 300 30px "Open Sans";
+    }
+    .open-business .container {padding-top: 50px;}
+    .open-business h2 {font: 300 30px/30px "Open Sans";}
+    .open-business .price {
+        margin: 20px 0 30px;
+        font-size: 21px;
+        line-height: 24px;
+    }
+    .reasons .reasons-list p {
+        margin: 0;
+        font: 300 16px/21px "Open Sans";
+    }
+    /*.reasons .reasons-list li:last-child p {*/
+        /*width: auto;*/
+    /*}*/
+    .reasons {padding: 50px 0 30px;}
+    .reasons h3 {
+        margin: 50px 0 0;
+        font: 300 30px "Open Sans";
+    }
+    .reasons .reasons-list {margin: 40px 0 0;}
+    .reasons .asks-list li {
+        float: none;
+        width: 100%;
+        padding: 0;
+        margin: 0 0 30px;
+    }
+    .asks-list-img {margin: 0 0 15px;}
+    .reasons .reasons-list li {
+      width: 100%;
+    }
+    .why {padding: 50px 0;}
+    .why h3 {font: 300 30px/30px "Open Sans";}
+    .why p {
+        margin: 25px 0 20px;
+        font: 300 16px/21px "Open Sans";
+    }
+    .why .last {margin: 20px 0 0;}
+    .control {padding: 50px 0;}
+    .control h3 {font: 300 25px "Open Sans";}
+    .control .description {
+        max-width: 510px;
+        width: auto;
+        font: 300 21px/24px "Open Sans";
+    }
+    .control img {margin: 25px auto 30px;}
+    .control p {
+        margin: 20px 0 0;
+        font: 300 16px/21px "Open Sans";
+    }
+    .form-section-first {padding: 50px 0 1px;}
+    .proposal {padding: 130px 0 20px;}
+    .proposal .container div {
+        float: none;
+        width: 100%;
+        padding: 0 0 40px;
+    }
+    .proposal .container .bad {padding-right: 0;}
+    .proposal .container .good {padding-left: 0;}
+    .proposal:before {display: none;}
+    .proposal .container h4 {margin: 0 0 35px;}
+    .proposal .container p {
+        margin: 20px 0 0;
+        font: 300 16px/21px "Open Sans";
+    }
+    #advantages {padding: 50px 0;}
+    #advantages h3 {font: 300 30px/30px "Open Sans";}
+    #advantages .agency {
+        margin: 8px 0 40px;
+        font: 300 20px "Open Sans";
+    }
+    #advantages .text {font: 300 16px/21px "Open Sans";}
+    #advantages .margin {margin-top: 20px;}
+    #advantages .every-year {padding: 40px 20px;}
+    #advantages .every-year h3 {
+        font-size: 30px;
+        line-height: 30px;
+    }
+    #advantages #included {padding-top: 50px;}
+    .together {padding: 50px 0 50px;}
+    .together h3 {font: 300 30px/30px "Open Sans";}
+    .together .get {margin: 8px 0 50px;}
+    .together ul {margin: 0;}
+    .together p {font: 300 16px/21px "Open Sans";}
+    .together ul p {margin: 0 0 0 87px;}
+    .together ul li:nth-child(odd) {padding: 0 10px 0 0;}
+    .together ul li:nth-child(even) {padding: 0 0 0 10px;}
+    #contacts {padding: 50px 0 50px;}
+    #contacts h3 {font: 300 30px/30px "Open Sans";}
+    #contacts p {
+        margin: 20px 0 35px;
+        font: 300 20px/20px "Open Sans";
+    }
+    #contacts address {
+        font: 300 18px/24px "Open Sans";
+    }
+    #contacts .number {margin-top: 10px;}
+
+    header .active {
+        height: 80px;
+    }
+    header .phone {
+        position: relative;
+        float: none;
+        width: 2300px;
+        margin: 0 auto;
+        padding: 0 0 30px;
+    }
+    header .languages-list {
+        left: 50%;
+        right: 0;
+        top: 100%;
+        margin-left: -50px;
+        margin-top: -25px;
+    }
+    header .languages-list a {
+      font: 400 15px/25px "Open Sans";
+      padding-right: 10px;
+    }
+    #video .ipad {
+        width: 400px;
+        height: 335px;
+    }
+    #video .ipad iframe {
+        width: 400px !important;
+        height: 335px !important;
+    }
+}
+@media screen and (max-width: 640px) {
+    #advantages .advantages-list li {
+        padding: 20px;
+        margin: 0 -10px;
+        margin-bottom: 30px;
+    }
+    #advantages .advantages-list div {margin: 0 0 0 170px;}
+    #advantages img {width: 150px;}
+    #advantages .every-year .my-btn {
+        width: 100%;
+        margin: 35px auto 15px;
+    }
+    .together ul li {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .together ul li:nth-child(odd) {padding: 0;}
+    .together ul li:nth-child(even) {padding: 0;}
+    .form-section-second .form {
+        width: auto;
+        padding: 0 15px;
+    }
+    .form-section-second form {
+        width: auto;
+        padding: 20px 0 0;
+    }
+    .form-section-second form > * {
+        float: none;
+        width: 100%;
+        display: block;
+        margin: 0 0 9px;
+        box-sizing: border-box;
+    }
+}
+@media screen and (max-width: 560px) {
+    .open-business .ipad {display: block;}
+    .open-business .ipad img {display: none;}
+    .open-business .ipad iframe {
+        position: static;
+        height: 320px;
+        width: 400px;
+    }
+    .why .photos {padding: 0 5px;}
+    .why .photos img {
+        float: none;
+        display: inline-block;
+        vertical-align: top;
+        width: 49%;
+        padding: 7px 5px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .open-business .ipad iframe {
+        position: static;
+        height: 220px;
+        width: 300px;
+    }
+    .form {
+        width: 300px;
+    }
+    #advantages .advantages-list li {padding: 15px;}
+    #advantages .advantages-list div {margin: 0 0 0 95px;}
+    #advantages img {width: 80px;}
+    #advantages .every-year h3 {font-size: 24px;}
+    .popup-form {
+        width: 290px;
+        height: auto;
+        padding: 1px 0 30px;
+    }
+    #video .ipad {
+        width: 280px;
+        height: 235px;
+    }
+    #video .ipad iframe {
+        width: 280px !important;
+        height: 235px !important;
+    }
+    .reasons .reasons-list p {margin: 0;}
+    .reasons .reasons-list .my-btn {
+        width: 214px;
+    }
+    #polityc {
+      width: 260px;
+      padding: 10px;
+    }
+}
+@media screen and (max-width: 420px) {
+    body {overflow-x: hidden;}
+    .form-section-first .form {width: 100%;}
+    .popup-form {
+        width: 280px;
+        height: auto;
+        padding: 1px 0 30px;
+    }
+}
+
+
+
+
+
+
+/************************* demo-login page ***************************/
+html, body {
+    min-height: 100%;
+    height: auto;
+}
+.demo-login {
+    min-height: 100%;
+    background: url(../images/bg_open-business.jpg) center top no-repeat;
+    background-size: cover;
+}
+.demo-login header {background: #fff;}
+.demo-login header .phone {
+    margin-top: 25px;
+}
+@media screen and (max-width: 767px){
+    .demo-login header .phone {
+        margin: 0 auto;
+        margin-top: 0;
+        padding: 0 0 10px;
+    }
+}
+.demo-login-alert {
+    padding: 20px 0;
+}
+.alert {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+.alert-info {
+    padding: 15px;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+    border-radius: 5px;
+}
+small, .small {
+    font-size: 85%;
+}
+
+
+
+
+.demo-login-form {
+
+}
+.sign {
+  margin: 0 auto;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 5px solid #ccc;
+  padding: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+.sign_text {
+  font-weight: bold;
+}
+.sign_title {
+  font-weight: bold;
+  font-size: 1.8em;
+}
+.sign_slogan {
+  font-style: italic;
+  color: #d9534f;
+}
+
+.demo-login-form form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.form-control:-moz-placeholder {
+  color: #999999;
+}
+.form-control::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+  opacity: 1;
+}
+textarea.form-control {
+  height: auto;
+}
+.demo-login-form label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+  color: #fff;
+  background-color: #d2322d;
+  border-color: #ac2925;
 }

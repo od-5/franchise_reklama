@@ -2,28 +2,30 @@
 <html lang="ru">
 <head>
   {% load staticfiles %}
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
 	<meta name="format-detection" content="telephone=no">
-	<title>Рекламное агентство «Дружба»</title>
-	<link rel="stylesheet" href="{% static 'landing/css/normalize.css' %}">
-	<link rel="stylesheet" href="{% static 'landing/fancy-box/jquery.fancybox.css' %}">
-	<link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js' %}"></script>
+{#	<link href="{% static 'landing/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />#}
+	<title>Рекламное агентство Дружба</title>
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/main.css' %}" />
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/jquery.fancybox.css' %}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="{% static 'landing/js/jquery.validate.js' %}"></script>
+	<script src="{% static 'landing/js/jquery.fancybox.js' %}"></script>
 	<script src="{% static 'landing/js/jquery.maskedinput.js' %}"></script>
-	<script src="{% static 'landing/fancy-box/jquery.fancybox.js' %}"></script>
-	<script src="{% static 'landing/js/scrollspy.js' %}"></script>
-	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-	<!--[if lt IE 10]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/html5.js' %}"></script><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
 	<script src="{% static 'landing/js/main.js' %}"></script>
 	<script type="text/javascript">
-		setTimeout('location.replace("{% url 'landing:index' %}")', 5000);
+		setTimeout('location.replace("{% url 'landing:index' %}")', 3000);
 	</script>
   {{ SETUP.top_js|safe|default:'' }}
 </head>
 <body>
-	<div class="container thnx">
+	<div id="wrapper" class="thnx">
 		<div class="thnx-text">
-			Спасибо за заявку. <br> Мы свяжемся с Вами <br> в ближайшее время.
+			СПАСИБО ЗА ВАШУ ЗАЯВКУ<br> МЫ СВЯЖЕМСЯ С ВАМИ<br> ЧЕРЕЗ НЕСКОЛЬКО МИНУТ
 		</div>	
 	</div>
 {{ SETUP.bottom_js|safe|default:'' }}

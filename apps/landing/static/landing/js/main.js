@@ -95,3 +95,16 @@ jQuery(function($){
 
 
 });
+$(document).ready(function(){
+	// nav
+	$(document).on('click','.nav-icon',function(e){
+		e.preventDefault();
+		$('.nav-block').show();
+	});
+	$(document).on('click','.nav-close',function(e){
+		e.preventDefault();
+		$('.nav-block').hide();
+	});
+});
+
+
