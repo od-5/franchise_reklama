@@ -1135,6 +1135,12 @@ footer address {
 
 }
 @media screen and (max-width: 767px) {
+    .form-section-first .form:before {
+      width: 310px;
+    }
+    .form-section-second p {
+      width: 290px;
+    }
     .header-logo {
         float: none;
         text-align: center;
