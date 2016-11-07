@@ -1096,6 +1096,9 @@ footer address {
     }
 }
 @media screen and (max-width: 960px) {
+    .reasons .reasons-list li {
+      width: 30%;
+    }
     .control h3 {
         max-width: 875px;
         width: auto;
@@ -1180,7 +1183,7 @@ footer address {
     }
     .asks-list-img {margin: 0 0 15px;}
     .reasons .reasons-list li {
-      width: 100%;
+      width: 49%;
     }
     .why {padding: 50px 0;}
     .why h3 {font: 300 30px/30px "Open Sans";}
@@ -1355,6 +1358,9 @@ footer address {
     #video .ipad iframe {
         width: 280px !important;
         height: 235px !important;
+    }
+    .reasons .reasons-list li {
+      width: 100%;
     }
     .reasons .reasons-list p {margin: 0;}
     .reasons .reasons-list .my-btn {
