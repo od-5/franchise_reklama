@@ -269,17 +269,6 @@ nav .active {
   position: relative;
   width: 415px;
   margin: 95px 0 30px;
-  padding-left: 46px;
-}
-
-.open-business .description:before {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 0;
-  width: 28px;
-  height: 24px;
-  background: url("../images/quote.png");
 }
 
 .open-business .link {
@@ -1118,7 +1107,6 @@ footer address {
         position: relative;
         width: auto;
         margin: 50px 0 30px;
-        padding-left: 46px;
     }
     .ipad {
         margin: 0 auto;
@@ -1177,7 +1165,7 @@ footer address {
     .reasons .reasons-list {margin: 40px 0 0;}
     .reasons .asks-list li {
         float: none;
-        width: 100%;
+        width: 49%;
         padding: 0;
         margin: 0 0 30px;
     }
