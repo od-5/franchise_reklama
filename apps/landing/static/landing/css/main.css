@@ -990,11 +990,13 @@ footer address {
   line-height: 50px;
 }
 .demo_link {
-  font-weight: bold;
-  text-shadow: 0 0 10px #FF6666;
+  border: 2px solid #e35f13;
+  padding: 10px;
+  border-radius: 5px;
 }
-
-
+.demo_link:hover {
+  background-color: #FFF1E9;
+}
 
 @media screen and (max-width: 1023px) {
     header p {display: none;}
