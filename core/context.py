@@ -9,7 +9,6 @@ def site_setup(request):
         qs = Setup.objects.first()
     except:
         qs = None
-    print qs
     return {
         'SETUP': qs
     }

@@ -14,7 +14,7 @@ class TicketAdminForm(ModelForm):
 
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'mail', 'created', 'status', 'manager', 'ticket_comment', 'country', 'city', 'time_zone')
+    list_display = ('name', 'phone', 'mail', 'created', 'status', 'contact_date', 'manager', 'ticket_comment', 'country', 'city', 'time_zone')
     list_filter = ['mail', 'created', 'status', 'manager', 'contact_date']
     search_fields = ['mail', 'manager']
     date_hierarchy = 'created'
@@ -23,7 +23,6 @@ class TicketAdmin(admin.ModelAdmin):
     form = TicketAdminForm
 
     def get_queryset(self, request):
-        print request.user.is_superuser
         user = request.user
         if user.is_superuser:
             qs = Ticket.objects.filter(sale=False)
@@ -60,7 +59,7 @@ class SaleAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
-    list_display = ('name', 'phone', 'mail', 'created', 'price', 'ticket_comment')
+    list_display = ('name', 'phone', 'mail', 'created', 'price', 'ticket_comment', 'contact_date')
     list_filter = ['mail', 'created', 'status', 'manager']
     search_fields = ['mail', 'manager']
     date_hierarchy = 'created'

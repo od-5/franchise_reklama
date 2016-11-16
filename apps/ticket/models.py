@@ -1,6 +1,8 @@
 # coding=utf-8
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from core.phone_inform import getphoneObject
 from core.base_model import Common
 from core.models import User
@@ -13,6 +15,7 @@ class Ticket(Common):
         verbose_name = u'Заявка'
         verbose_name_plural = u'Заявки'
         app_label = 'ticket'
+        ordering = ['-contact_date']
 
     def __unicode__(self):
         return self.name
@@ -40,6 +43,7 @@ class Ticket(Common):
         (1, u'Новая заявка'),
         (2, u'Отклонена'),
         (3, u'Нет ответа'),
+        (4, u'Предпродажа'),
     )
 
     manager = models.ForeignKey(to=User, verbose_name=u'Менеджер', blank=True, null=True)
@@ -54,4 +58,28 @@ class Ticket(Common):
     country = models.CharField(max_length=200, verbose_name=u'Страна', blank=True, null=True)
     city = models.CharField(max_length=200, verbose_name=u'Город', blank=True, null=True)
     time_zone = models.CharField(max_length=10, verbose_name=u'Часовой пояс', blank=True, null=True)
-    contact_date = models.DateField(verbose_name=u'Дата контактка', blank=True, null=True)
+    contact_date = models.DateTimeField(verbose_name=u'Дата контакта', blank=True, null=True)
+
+
+@receiver(pre_save, sender=Ticket)
+def get_geophone_info(sender, **kwargs):
+    ticket = kwargs['instance']
+    if not ticket.id:
+        api_key = settings.HTMLWEB_API_KEY
+        try:
+            data = getphoneObject(ticket.phone, api_key)
+            if data.has_key('country'):
+                if data['country'].has_key('fullname'):
+                    ticket.country = data['country']['fullname']
+            elif data.has_key('fullname'):
+                ticket.country = data['fullname']
+            if data.has_key('0'):
+                if data['0'].has_key('name'):
+                    ticket.city = data['0']['name']
+                if data['0'].has_key('time_zone'):
+                    ticket.city = data['0']['time_zone']
+            if not ticket.time_zone and data.has_key('time_zone'):
+                ticket.time_zone = data['time_zone']
+        except:
+            # ticket.country = data['0']['country']
+            pass
