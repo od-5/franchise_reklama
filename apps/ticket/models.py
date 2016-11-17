@@ -77,7 +77,7 @@ def get_geophone_info(sender, **kwargs):
                 if data['0'].has_key('name'):
                     ticket.city = data['0']['name']
                 if data['0'].has_key('time_zone'):
-                    ticket.city = data['0']['time_zone']
+                    ticket.time_zone = data['0']['time_zone']
             if not ticket.time_zone and data.has_key('time_zone'):
                 ticket.time_zone = data['time_zone']
         except:
