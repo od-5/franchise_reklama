@@ -58,7 +58,7 @@ def new_ticket_send(sender, **kwargs):
     else:
         video = None
     # msg_plain = render_to_string('email.txt', {'name': name})
-    msg_html = render_to_string('ticket/mail.html', {'video': video})
+    msg_html = render_to_string('ticket/mail.html', {'name': name, 'video': video})
     try:
         send_mail(
             subject,
