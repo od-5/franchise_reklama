@@ -51,7 +51,7 @@ def new_ticket_send(sender, **kwargs):
     """
     name = kwargs['name']
     email = kwargs['email']
-    subject = u'Новое письмо'
+    subject = u'Рекламный бизнес по франшизе'
     # msg_plain = render_to_string('email.txt', {'name': name})
     msg_html = render_to_string('ticket/mail.html', {'name': name})
     try:
