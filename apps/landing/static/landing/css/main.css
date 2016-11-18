@@ -805,7 +805,14 @@ nav .active {
 #contacts .number {
   margin-top: 20px;
 }
-
+.contacts-vk__button {
+    display: block;
+    width: 200px;
+    margin: 20px auto 0;
+}
+.contacts-vk__image {
+    max-width: 100%;
+}
 .form-section-second {
   position: relative;
   min-height: 550px;
