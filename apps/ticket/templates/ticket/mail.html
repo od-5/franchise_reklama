@@ -215,9 +215,14 @@
 			<tr>
 				<td width="100%" valign="top" colspan="3">
 					<a href="" target="_blank">
+            <style>
+              iframe {
+                width: 100%;
+              }
+            </style>
 {#						<img src="http://demo.freepixel.com.ua/mailer_druzba/video.jpg" alt="" width="100%">#}
-          {% if video %}
-            {{ video|safe }}
+          {% if SETUP.video %}
+            {{ SETUP.video|safe }}
           {% else %}
             <img src="http://franchise.reklamadoma.com/static/ticket/video.jpg" alt="" width="100%">
           {% endif %}
@@ -557,13 +562,6 @@
 					  <tr>
 						<td height="11" width="100%" valign="top" colspan="3"></td>
 					  </tr>
-            <tr>
-              <td>
-                <a href="https://vk.com/franchise.reklamadoma" title="Наша группа вконтакте" target="_blank" class="contacts-vk__button">
-                  <img src="http://franchise.reklamadoma.com/static/landing/images/vk-logo.png" class="contacts-vk__image">
-                </a>
-              </td>
-            </tr>
 					</tbody>
 				  </table>
 				  </a>
@@ -576,6 +574,16 @@
           </tbody>
         </table></td>
     </tr>
+  <tr>
+    <td height="52" width="100%" valign="top" colspan="3"></td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <a href="https://vk.com/franchise.reklamadoma" title="Наша группа вконтакте" target="_blank" style="display: inline-block; width: 200px;">
+        <img src="http://franchise.reklamadoma.com/static/landing/images/vk-logo.png" class="contacts-vk__image" style="width: 100%;">
+      </a>
+    </td>
+  </tr>
 	<tr>
       <td align="center"><table border="0" cellpadding="0" cellspacing="0" width="600" class="devicewidth">
           <tbody>

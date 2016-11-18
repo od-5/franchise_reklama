@@ -52,13 +52,13 @@ def new_ticket_send(sender, **kwargs):
     name = kwargs['name']
     email = kwargs['email']
     subject = u'Новое письмо'
-    setup = Setup.objects.first()
-    if setup and setup.video:
-        video = setup.video
-    else:
-        video = None
+    # setup = Setup.objects.first()
+    # if setup and setup.video:
+    #     video = setup.video
+    # else:
+    #     video = None
     # msg_plain = render_to_string('email.txt', {'name': name})
-    msg_html = render_to_string('ticket/mail.html', {'name': name, 'video': video})
+    msg_html = render_to_string('ticket/mail.html', {'name': name})
     try:
         send_mail(
             subject,
