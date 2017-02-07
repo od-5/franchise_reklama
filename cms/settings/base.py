@@ -21,7 +21,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'info@reklamadoma.com'
 EMAIL_HOST = 'smtp.fullspace.ru'
 EMAIL_HOST_USER = 'info@reklamadoma.com'
-EMAIL_HOST_PASSWORD = 'alena2010'
+EMAIL_HOST_PASSWORD = 'reklamadoma2010'
 
 ROOT_URLCONF = 'cms.urls'
 
