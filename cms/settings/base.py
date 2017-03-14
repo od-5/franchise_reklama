@@ -8,20 +8,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = 'u@5!he@8y6ynbta9c9(l=%b1qzb(c=*9*v)jf+1lkn%_by!jk*'
 
-if socket.gethostname() == 'r420':
-    DEBUG = True
-else:
-    DEBUG = False
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'info@reklamadoma.com'
-EMAIL_HOST = 'smtp.fullspace.ru'
-EMAIL_HOST_USER = 'info@reklamadoma.com'
-EMAIL_HOST_PASSWORD = 'reklamadoma2010'
 
 ROOT_URLCONF = 'cms.urls'
 
