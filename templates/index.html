@@ -1,0 +1,612 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{#  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
+  <title>{{ SETUP.title|default:'Проведем опрос, анкетирование, промо-акцию в любой точке России.' }}</title>
+  <link media="all" rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+  <link media="all" rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}" />
+  <link media="all" rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}" />
+  <script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.validate.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.js' %}"></script>
+  <script src="{% static 'js/jquery.maskedinput.js' %}"></script>
+  <!--[if lt IE 9]><script type="text/javascript" src="{% static 'js/html5.js' %}"></script><![endif]-->
+  <!--[if lt IE 9]><script type="text/javascript" src="{% static 'js/placeholder.js' %}"></script><![endif]-->
+  <script src="{% static 'js/all.js' %}"></script>
+  {{ SETUP.top_js|safe|default:'' }}
+</head>
+<body>
+{% load i18n %}
+  <div id="wrapper">
+    <header class="header">
+      <div class="holder">
+        <div class="header-slogan"><span class="orange">Бизнес</span>, с которым <br>
+        <span class="orange">справится</span> даже <span class="header-slogan-num">1</span> <span class="orange">человек</span></div>
+        <div class="header-logo"><a href="{% url 'landing:index' %}"><img src="{% static 'images/logo.png' %}" alt=""></a></div>
+        <div class="header-right">
+          <div class="header-langs" data-url="{% url 'set_language' %}">
+            {% get_current_language as LANGUAGE_CODE %}
+            <div class="langs-top langs-link">
+              <a href="" class="{{ LANGUAGE_CODE }}">{{ LANGUAGE_CODE|language_name_local }}</a>
+            </div>
+            <div class="langs-hidden">
+              {% csrf_token %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                {% if language.code != LANGUAGE_CODE %}
+                <div class="langs-link">
+                  <a data-language="{{ language.code }}" class="{{ language.code }}">{{ language.name_local }}</a>
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <a href="tel:{{ SETUP.phone|default:'+88002503450' }}" class="header-phone">{{ SETUP.phone|default:'8 800 250-34-50' }}</a>
+        </div>
+      </div>
+    </header>
+    <section class="top-banner">
+      <div class="holder">
+        <div class="top-banner-left">
+          <h1>УСПЕЙТЕ ОТКРЫТЬ <span class="yellow">СВОЙ</span> РЕКЛАМНЫЙ <span class="yellow">БИЗНЕС</span>
+          ПО ФРАНШИЗЕ ВСЕГО ЗА <span class="yellow">2900 РУБЛЕЙ</span>!</h1>
+          <div class="top-banner-subtitle">С применением инновационных технологий и зарабатывайте <span class="yellow">от 50 000</span> рублей
+          в месяц без опыта и капиталовложений</div>
+          <div class="top-banner-text">Минимальный порог входа: вы платите <br>
+          <span class="yellow">всего 2900 рублей в месяц</span> и ни копейкой больше</div>
+        </div>
+        <div class="top-banner-right">
+          <div class="top-banner-form">
+            <form action="{% url 'ticket:send' %}" method="post">
+              {% csrf_token %}
+              <fieldset>
+                <div class="order-title">Заполните <span>форму</span></div>
+                <div class="order-text">И узнайте все условия открытия вашего бизнеса</div>
+                <input name="name" type="text" class="input" placeholder="Ваше имя *">
+                <input name="mail" type="text" class="input" placeholder="Ваш email *">
+                <input name="phone" type="text" class="input" placeholder="+7 (___) ___-__-__">
+                <input type="hidden" name="theme" value="Заявка на консультацию">
+                <div class="form-button">
+                  <button class="submit">Получить информацию</button>
+                </div>
+                <div class="form-min">Мы гарантируем конфиденциальность</div>
+                <div class="form-min"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div class="top-banner-video">
+          <div class="top-banner-video-holder">
+            {{ SETUP.video|safe|default:'' }}
+          </div>
+          <div class="top-banner-link"><a href="#video-popup" class="fancybox">Программная разработка, не имеющая аналогов в рекламной сфере «Контроль рекламных услуг»</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="about">
+      <div class="holder">
+        <h2><span class="orange">Приобретите франшизу</span> рекламного агентства «Рекламные технологии» </h2>
+        <div class="subtitle">и постройте собственный бизнес всего за 2900 рублей в месяц</div>
+        <div class="about-title-min">Что вы сможете предложить вашим клиентам?</div>
+        <div class="about-list">
+          <div class="about-item">
+            <div class="about-img"><img src="{% static 'images/a1.png' %}" alt=""></div>
+            <div class="about-text">Распространение коммерческих предложений в офисах коммерческих предприятий и организаций.</div>
+          </div>
+          <div class="about-item">
+            <div class="about-img"><img src="{% static 'images/a2.png' %}" alt=""></div>
+            <div class="about-text">Расклейку объявлений, плакатов и афиш на рекламных стендах вашего города</div>
+          </div>
+          <div class="about-item">
+            <div class="about-img"><img src="{% static 'images/a3.png' %}" alt=""></div>
+            <div class="about-text">Распространение рекламных материалов, счетов, квитанций по почтовым ящикам многоквартирных домов, в новостройках и частном секторе.</div>
+          </div>
+          <div class="about-item">
+            <div class="about-img"><img src="{% static 'images/a4.png' %}" alt=""></div>
+            <div class="about-text">Распространение визиток и рекламных листовок под дворники автомобилей, хенгеров на дверные ручки квартир, расклейка по этажам.</div>
+          </div>
+          <div class="about-item">
+            <div class="about-img"><img src="{% static 'images/a5.png' %}" alt=""></div>
+            <div class="about-text">Раздачу рекламных листовок на оживленных улицах и перекрестках, проведение дегустаций в торговых точках.</div>
+          </div>
+          <div class="about-item">
+            <div class="about-img"><img src="{% static 'images/a6.png' %}" alt=""></div>
+            <div class="about-text">Проведение опросов и анкетирования среди населения в самых посещаемых местах вашего города.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="info">
+      <div class="holder">
+        <h2>И самое главное!</h2>
+        <div class="subtitle">Уверенность в том, что 100% рекламного тиража окажется в руках потенциальных клиентов</div>
+        <div class="info-title-min">Оцените ваши выгоды самостоятельно</div>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-num">1</div>
+            <div class="info-text">Всего за 2900 рублей вы получаете работающую схему открытия прибыльного и эффективного бизнеса</div>
+          </div>
+          <div class="info-item">
+            <div class="info-num">2</div>
+            <div class="info-text">В состав франшизы входит уникальная программа отслеживания выполнения заказа в режиме онлайн
+            в разрезе каждого адреса</div>
+          </div>
+          <div class="info-item">
+            <div class="info-num">3</div>
+            <div class="info-text">Уже в первый месяц вы заработаете от 20 000 рублей чистой прибыли с минимальными вложениями</div>
+          </div>
+          <div class="info-item">
+            <div class="info-num">4</div>
+            <div class="info-text">Благодаря возможности удаленной проверки работы исполнителя клиенты будут выстраиваться в
+            очередь к вам, а не к конкурентам</div>
+          </div>
+          <div class="info-item">
+            <div class="info-num">5</div>
+            <div class="info-text">Это практически единственный способ начать работать на себя со стартовым капиталом,
+            равным стоимости одного похода в супермаркет</div>
+          </div>
+          <div class="info-item">
+            <div class="info-num">6</div>
+            <div class="info-text">Ваша реклама приносит клиентам в два раза больше откликов, а значит, вы всегда на шаг впереди конкурентов</div>
+          </div>
+        </div>
+        <h2>Почему качественные рекламные услуги всегда пользуются спросом?</h2>
+      </div>
+    </section>
+    <section class="banner banner1">
+      <div class="holder">
+        <div class="banner-block">
+          <div class="banner-text">Реклама приносит прибыль, поэтому она никогда не утратит актуальности.</div>
+        </div>
+      </div>
+    </section>
+    <section class="banner banner2">
+      <div class="holder">
+        <div class="banner-block banner-block-left">
+          <div class="banner-text">90% представителей малого и среднего бизнеса начинают рекламную кампанию с распространения
+          листовок, расклейки объявлений и раздачи рекламных материалов на оживленных улицах города как проверенного и рабочего
+          способа недорого рассказать о себе.</div>
+        </div>
+      </div>
+    </section>
+    <section class="banner banner3">
+      <div class="holder">
+        <div class="banner-block">
+          <div class="banner-text">Листовки в почтовых ящиках, объявления на рекламных стендах и промоакции на улицах
+          города работают эффективно, а стоят недорого, поэтому легко впишутся в рекламный бюджет любого предприятия.</div>
+        </div>
+      </div>
+    </section>
+    <section class="banner banner4">
+      <div class="holder">
+        <div class="banner-block banner-block-left">
+          <div class="banner-text">Во время кризиса с целью экономии рекламодатели возвращаются к эффективным и недорогим
+          методам рекламы — распространению листовок по почтовым ящикам, расклейке объявлений и организации промоакций на улицах города.</div>
+        </div>
+      </div>
+    </section>
+    <section class="clouds">
+      <div class="holder">
+        <h2>Не верите? <br>Просто вспомните...</h2>
+        <div class="cloud-block">
+          <div class="cloud-item cloud1">
+            <img src="{% static 'images/media/cloud1.png' %}" alt="">
+            <div class="cloud-content">
+              <div class="cloud-text">Откуда вы узнали о новом кафе, парикмахерской, службе такси в вашем городе?</div>
+            </div>
+          </div>
+          <div class="cloud-item cloud2">
+            <img src="{% static 'images/media/cloud2.png' %}" alt="">
+            <div class="cloud-content">
+              <div class="cloud-text">Сколько рекламных листовок попадает в ваши руки каждый день на остановках метро и перекрестках?</div>
+            </div>
+          </div>
+          <div class="cloud-item cloud3">
+            <img src="{% static 'images/media/cloud2.png' %}" alt="">
+            <div class="cloud-content">
+              <div class="cloud-text">Как часто вы находите рекламную продукцию в своем почтовом ящике?</div>
+            </div>
+          </div>
+          <div class="cloud-item cloud4">
+            <img src="{% static 'images/media/cloud1.png' %}" alt="">
+            <div class="cloud-content">
+              <div class="cloud-text">Встречали ли вы когда-нибудь пустующие доски объявлений в вашем городе?</div>
+            </div>
+          </div>
+        </div>
+        <div class="cloud-bottom">Эффективная реклама увеличивает продажи, приводит новых клиентов и зарабатывает деньги!</div>
+      </div>
+    </section>
+    <section class="sistem">
+      <div class="holder">
+        <h2>Как работает программа по онлайн-отслеживанию исполнения заказа для рекламодателей?</h2>
+        <div class="sistem-block">
+          <div class="sistem-img"><img src="{% static 'images/media/sistem.png' %}" alt=""></div>
+          <div class="sistem-text">
+            <p>Система отчетности перед рекламодателями — самая большая трудность в этом простом бизнесе.
+            Не беспокойтесь — вы с ней не столкнетесь!</p>
+            <p>Мы уже решили эту проблему и вместе с франшизой предлагаем вам продукт, у которого нет конкурентов — программу
+            онлайн-отслеживания исполнения заказов «Контроль рекламных услуг».</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="demo">
+      <div class="holder">
+        <div class="demo-block">
+          <h2>Так выглядит на практике</h2>
+          <div class="subtitle">выполнение заказа с помощью программной разработки по контролю промоакций, анкетирования и опросов</div>
+          <div class="demo-line">
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Заказчик задает радиус работы промоутера в программе</div>
+            </div>
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Промоутер принимает задачу в работу и отмечает свое местоположение на яндекс-карте с помощью GPS</div>
+            </div>
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Исполнитель проводит опрос и записывает данные в аудиоформате с помощью программы</div>
+            </div>
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Заказчик в онлайн-режиме отслеживает передвижение исполнителя по яндекс-карте и проверяет
+              достоверность опросов, сидя у себя в офисе</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-block">
+          <h2>Так работает программный модуль</h2>
+          <div class="subtitle">«Контроль распространения и расклейки рекламной продукции»</div>
+          <div class="demo-line">
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Исполнитель заказа отмечает на карте каждую точку маршрута по расклейке и распространению объявлений с помощью GPS</div>
+            </div>
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Исполнитель фотографирует проделанную работу по каждому адресу и моментально отправляет снимок на сервер</div>
+            </div>
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Все передвижения исполнителя отображаются на яндекс карте вместе с фотографиями выполнения заказа по каждому адресу</div>
+            </div>
+            <div class="demo-item">
+              <div class="demo-img"><img src="{% static 'images/media/img0.jpg' %}" alt=""></div>
+              <div class="demo-text">Заказчик проверяет работу исполнителя в онлайн-режиме, не выходя из дома и просто просматривая
+              фотографии, привязанные к адресам на яндекс-карте</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-total">Вы предлагаете самую прозрачную схему работы — клиенты выбирают вас вместо конкурентов<br><br>
+        Всё просто!</div>
+      </div>
+    </section>
+    <section class="order">
+      <div class="holder">
+        <div class="order-block">
+          <form action="{% url 'ticket:send' %}" method="post">
+            {% csrf_token %}
+            <fieldset>
+              <div class="order-title">Заполните <span>форму</span></div>
+              <div class="order-text">И получите подробную консультацию о франшизе</div>
+              <input name="name" type="text" class="input" placeholder="Ваше имя *">
+              <input name="mail" type="text" class="input" placeholder="Ваш email *">
+              <input name="phone" type="text" class="input" placeholder="+7 (___) ___-__-__">
+              <input type="hidden" name="theme" value="Заявка на консультацию">
+              <div class="form-button">
+                <button class="submit">Получить консультацию</button>
+              </div>
+              <div class="form-min">Мы гарантируем конфиденциальность</div>
+              <div class="form-min"></div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="reasons">
+      <div class="holder">
+        <h2>Почему вы всегда будете опережать конкурентов минимум на 1 шаг</h2>
+        <div class="subtitle">C франшизой рекламного агентства «Рекламные технологии»?</div>
+        <div class="reasons-block">
+          <div class="reasons-column reasons-plus">
+            <div class="reasons-title">Что сможет предложить ваша компания?</div>
+            <div class="reasons-img"><img src="{% static 'images/media/plus-img.jpg' %}" alt=""></div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Заказчик уверен в 100%-ном попадании рекламных материалов
+              по назначению вплоть до каждой единицы тиража</div>
+              <div class="reasons-item-note">Онлайн-отслеживание выполнения заказа и подробный фотоотчет по
+              каждому адресу в рекламной кампании</div>
+            </div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Увеличение числа клиентов и рост бизнеса рекламодателя, как
+              следствие, увеличение денежных вливаний на рекламу в вашем агентстве</div>
+              <div class="reasons-item-note">Возможность удаленного контроля работы расклейщиков и промоутеров с
+              указанием точного маршрута передвижений на яндекс-карте</div>
+            </div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Благодаря возможности удаленного контроля клиент охватывает
+              абсолютно любой район проживания его потенциальных клиентов</div>
+              <div class="reasons-item-note">Редкие услуги в рекламном бизнесе — распространение листовок в
+              частном секторе, новостройках и в офисах предприятий</div>
+            </div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Заказчик в любой момент может убедиться в том, что результаты
+              анкетирования записаны на основании реальных опросов мнений</div>
+              <div class="reasons-item-note">Проведение анкетирования населения с возможностью проверки достоверности
+              результатов в разрезе каждого опроса с помощью аудиозаписи</div>
+            </div>
+          </div>
+          <div class="reasons-column reasons-minus">
+            <div class="reasons-title">Что могут предложить ваши конкуренты?</div>
+            <div class="reasons-img"><img src="{% static 'images/media/minus-img.jpg' %}" alt=""></div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Недовольный клиент, который никогда не знает, какое количество
+              рекламного тиража попало к потенциальному клиенту</div>
+              <div class="reasons-item-note">Текстовый отчет о работе и совместный выезд по нескольким
+              адресам, участвующим в рекламной акции</div>
+            </div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Неэффективная рекламная кампания, которую заказчик оплатил по полной
+              стоимости. Отсутствие откликов и впустую потраченный рекламный бюджет</div>
+              <div class="reasons-item-note">Полное отсутствие гарантий попадания рекламных материалов к
+              потенциальным клиентам</div>
+            </div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Невозможность удовлетворить все потребности клиентов в новых методах
+              рекламы из-за отсутствия возможности достоверно проверить выполнения заказа</div>
+              <div class="reasons-item-note">Стандартный перечень услуг, который обычно ограничен расклейкой
+              объявлений и распространением листовок по почтовым ящикам</div>
+            </div>
+            <div class="reasons-item">
+              <div class="reasons-item-text">Заказчик получает важные для него данные, но никто не гарантирует
+              ему их достоверность хотя бы на 50%</div>
+              <div class="reasons-item-note">Организацию опросов с проверкой работы промоутеров супервайзерами,
+              которые могут лишь выборочно посетить несколько адресов на несколько минут</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="advantage">
+      <div class="holder">
+        <h2>Преимущества рекламного <span class="orange">бизнеса</span></h2>
+        <div class="subtitle">По франшизе агентства «Рекламные технологии»</div>
+        <div class="advantage-list">
+          <div class="advantage-item">
+            <div class="advantage-img"><img src="{% static 'images/media/advantages-item-img1.jpg' %}" alt=""></div>
+            <div class="advantage-content">
+              <h3>Простота</h3>
+              <p>Вы получите полностью работоспособную и автоматизированную схему, которая будет приносить вам от
+              20 000 рублей чистой прибыли уже в первый месяц с первоначальными затратами всего 2900 рублей.
+              Вам не придется постигать премудрости ведения бизнеса методом «проб и ошибок». Вы покупаете готовую
+              к использованию модель, с помощью которой вы составите серьезную конкуренцию действующим участникам
+              рекламного рынка в вашем городе.</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-img"><img src="{% static 'images/media/advantages-item-img2.jpg' %}" alt=""></div>
+            <div class="advantage-content">
+              <h3>Невысокая стоимость</h3>
+              <p>Ваши затраты на открытие бизнеса составят всего 2 900 рублей без скрытых платежей и дополнительных
+              комиссий.</p>
+              <p>На первоначальной стадии развития вам не понадобится офис и штат постоянных сотрудников.
+              Со всей работой вы можете справиться самостоятельно</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-img"><img src="{% static 'images/media/advantages-item-img3.jpg' %}" alt=""></div>
+            <div class="advantage-content">
+              <h3>Конкурентное преимущество прямо на старте</h3>
+              <p>Благодаря специальной программе контроля, которая не оставит рекламодателям никаких сомнений в том,
+              что заказ был выполнен качественно с точностью до одного адреса и одной листовки, вы всегда будете
+              впереди конкурентов.</p>
+              <p>Ваши клиенты будут вам доверять и обращаться к вам снова и снова!</p>
+            </div>
+          </div>
+          <div class="advantage-item">
+            <div class="advantage-img"><img src="{% static 'images/media/advantages-item-img4.jpg' %}" alt=""></div>
+            <div class="advantage-content">
+              <h3>Высокая ликвидность</h3>
+              <p>Если по какой-либо причине вы больше не захотите заниматься рекламным бизнесом, вы легко сможете его
+              продать. Ваш товар очень быстро найдет покупателя, поскольку вы сможете ему предложить работающую схему
+              ведения бизнеса, которая уже приносит деньги. Благодаря автоматизации всех финансовых вопросов и
+              действий по работе с клиентами и исполнителями в программе, ваш покупатель получит не только доступ к
+              уникальному методу онлайн-отчетности, но и наработанную базу рекламодателей.</p>
+            </div>
+          </div>
+        </div>
+        <div class="advantage-order">
+          <h3>С каждым годом цена вашего бизнеса будет только увеличиваться</h3>
+          <div class="subtitle">Сделайте выгодную инвестицию в будущее!</div>
+          <div class="button-holder">
+            <a href="#popup" class="button fancybox">Получить консультацию</a>
+          </div>
+          <div class="form-min">Мы гарантируем конфиденциальность</div>
+        </div>
+        <article class="advantage-article">
+          <h2>Что еще входит в стоимость франшизы</h2>
+          <div class="subtitle">Рекламного агентства «Рекламные технологии»?</div>
+          <p>Компаний, которые занимаются расклейкой объявлений и распространением листовок по почтовым ящикам, организацией
+          опросов и раздачей листовок много. Фирм, использующих инновации, практически нет. Вы сможете захватить до 50%
+          рекламного рынка в вашем городе благодаря современным технологиям работы и автоматизации всех процессов.</p>
+          <p>Вы получите полностью автоматизированную схему работы, благодаря которой вы сможете грамотно управлять вашим
+          бизнесом, контролировать поступление и расходование средств, анализировать результаты. Мы научим вас зарабатывать
+          от 50 000 рублей в месяц с помощью простого и легкого метода работы. Уже через 2 месяца вы окупите первоначальные
+          вложения и начнете работать на прибыль.</p>
+        </article>
+      </div>
+    </section>
+    <section class="instruction">
+      <div class="holder">
+        <h2>Вместе с подробной инструкцией<br> по созданию бизнеса</h2>
+        <div class="subtitle">В рамках франшизы вы получите</div>
+        <div class="instruction-list">
+          <div class="instruction-item">
+            <div class="instruction-img"><img src="{% static 'images/i1.png' %}" alt=""></div>
+            <div class="instruction-text">Продающий сайт и все входящие заявки клиентов в вашем городе</div>
+          </div>
+          <div class="instruction-item">
+            <div class="instruction-img"><img src="{% static 'images/i2.png' %}" alt=""></div>
+            <div class="instruction-text">CRM-систему, которая упрощает работу с клиентами на каждом этапе взаимодействия</div>
+          </div>
+          <div class="instruction-item">
+            <div class="instruction-img"><img src="{% static 'images/i3.png' %}" alt=""></div>
+            <div class="instruction-text">Систему управления продажами — вы в любой момент сможете получить всю необходимую
+            информацию о состоянии ваших финансов</div>
+          </div>
+          <div class="instruction-item">
+            <div class="instruction-img"><img src="{% static 'images/i4.png' %}" alt=""></div>
+            <div class="instruction-text">Программу отчетности по заказам перед клиентами</div>
+          </div>
+        </div>
+        <div class="instruction-bottom">Получите свой первый опыт предпринимательской деятельности вместе с франшизой
+        рекламного агентства «Рекламные технологии» и зарабатывайте от 50 000 рублей в месяц без опыта и больших капиталовложений!</div>
+      </div>
+    </section>
+    <section class="contacts">
+      <div class="holder">
+        <h2>Наши контакты</h2>
+        <div class="subtitle">Свяжитесь с нами</div>
+        <div class="contacts-block">
+          <div class="contacts-item">ООО "Рекламные технологии" РФ, г. Москва, проспект Мира, д. 131</div>
+          <div class="contacts-item contacts-right">8 (800) 250-34-50<br><a href=""><img src="{% static 'images/vk.png' %}" alt=""></a></div>
+        </div>
+      </div>
+    </section>
+    <section class="map">
+      <div class="holder">
+        <div class="map-block">
+          <div class="map-title">Заполните форму</div>
+          <div class="map-text">и получите презентацию с перечнем свободных городов</div>
+          <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+            <fieldset>
+              <div class="map-input">
+                <input name="name" type="text" class="input" placeholder="Ваше имя *">
+              </div>
+              <div class="map-input">
+                <input name="mail" type="text" class="input" placeholder="Ваш email *">
+              </div>
+              <div class="map-input">
+                <input name="phone" type="text" class="input" placeholder="+7 (___) ___-__-__">
+              </div>
+              <div class="map-input">
+                <button class="submit">Оставить заявку</button>
+              </div>
+              <input type="hidden" name="theme" value="Заявка на презентацию">
+            </fieldset>
+          </form>
+          <div class="map-min">Мы гарантируем конфиденциальность</div>
+        </div>
+      </div>
+      <div class="map-holder">
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <div id="ya_map" data-url="{% url 'city:map' %}"></div>
+        <script type="text/javascript">
+          ymaps.ready(init);
+          var myMap;
+          function init(){
+            myMap = new ymaps.Map("ya_map", {
+            center: [52.573871,57.674484],
+            zoom: 6
+            });
+
+            // Создание метки
+            var myCollection = new ymaps.GeoObjectCollection({}, {
+               preset: 'islands#redIcon', //все метки красные
+               draggable: false // и их можно перемещать
+            });
+
+            var city_map_url = $('#ya_map').data('url');
+            $.get(city_map_url,
+            function(e) {
+              function outputItem(item, i, e) {
+                myCollection.add(
+                  new ymaps.Placemark([item['coord_y'], item['coord_x']], {
+                  balloonContent: item['name'],
+                  hintContent: item['name']
+                  })
+                );
+              }
+              e.forEach(outputItem);
+            }
+            );
+            myMap.geoObjects.add(myCollection);
+            myMap.behaviors.disable('scrollZoom');
+          }
+          </script>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="holder">
+          <div class="footer-top-text">Хотите посмотреть, как будут выглядеть ваши будущие сайты?</div>
+          <div class="footer-top-links">
+            <div class="footer-top-link"><a href="http://www.reklamadoma.com/">Интернет-портал по распространению и расклейки рекламной продукции</a></div>
+            <div class="footer-top-link"><a href="http://www.promo-reklama.com/">Интернет- Портал по проведению опросов, анкетирования и раздаче рекламных материалов</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="holder">
+          <div class="footer-line">
+            <div class="footer-logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
+            <div class="footer-copy">
+              <a href="#hidden-block" class="fancybox">Политика конфиденциальности</a><br>
+              «Рекламные технологии» &copy;
+              <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script>
+            </div>
+            <a href="tel:+{{ SETUP.phone|default:'88002503450' }}" class="footer-phone">{{ SETUP.phone|default:'8 800 250-34-50' }}</a>
+          </div>
+          <div class="footer-line">
+            <div class="footer-info1"><b>Юр. лицо в России</b><br>
+            ООО "Рекламные технологии"<br>
+            РФ, г. Москва, проспект Мира, д. 131</div>
+            <div class="footer-info2"><b>Юр. лицо в Чехии</b><br>
+            International Communication Technologies s.r.o. Ostrava, Moravska Ostrava, Vystavni 1928/9, Postcode 702 00</div>
+            <a href="http://neurondg.com/" target="_blank" class="footer-studio">
+              <span>Дизайн сайта</span>
+              <img src="{% static 'images/studio.png' %}" alt="">
+            </a>
+          </div>
+          <div id="hidden-block">
+            <h2>Политика конфиденциальности</h2>
+            <p>Мы не собираем личную информацию о Вас, когда Вы заходите на наш сайт.
+            Вы можете анонимно просматривать сайт. Тем не менее, Ваш браузер все же автоматически сообщает нам тип компьютера и операционной системы, которые Вы используете. Единственная личная информация о Вас, которую мы получаем, это те данные, которые Вы добровольно предоставляете при заполнении форм.
+            При заполнении форм на сайте у Вас запросят персональную информацию, такую как имя, номер телефона. Предоставление такой информации в ответ на запрос осуществляется Вами исключительно добровольно.
+            Предоставленная Вами информация используется чтобы оказать те услуги, которые Вы сами запрашиваете.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div id="video-popup" class="video-popup">
+      {{ SETUP.video|safe|default:'' }}
+    </div>
+    <div id="popup" class="popup">
+      <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+        <fieldset>
+          <div class="order-title">Заполните <span>форму</span></div>
+          <div class="order-text">И узнайте все условия открытия вашего бизнеса</div>
+          <input name="name" type="text" class="input" placeholder="Ваше имя *">
+          <input name="mail" type="text" class="input" placeholder="Ваш email *">
+          <input name="phone" type="text" class="input" placeholder="+7 (___) ___-__-__">
+          <input type="hidden" name="theme" value="Заявка на консультацию">
+          <div class="form-button">
+            <button class="submit">Получить информацию</button>
+          </div>
+          <div class="form-min">Мы гарантируем конфиденциальность</div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+{{ SETUP.bottom_js|safe|default:'' }}
+</body>
+</html>
