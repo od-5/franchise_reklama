@@ -54,6 +54,7 @@
     </header>
     <section class="top-banner">
       <div class="holder">
+      {% block top_content %}
         <div class="top-banner-left">
           <h1>УСПЕЙТЕ ОТКРЫТЬ <span class="yellow">СВОЙ</span> РЕКЛАМНЫЙ <span class="yellow">БИЗНЕС</span>
           ПО ФРАНШИЗЕ ВСЕГО ЗА <span class="yellow">2900 РУБЛЕЙ</span>!</h1>
@@ -88,8 +89,10 @@
           </div>
           <div class="top-banner-link"><a href="#video-popup" class="fancybox">Программная разработка, не имеющая аналогов в рекламной сфере «Контроль рекламных услуг»</a></div>
         </div>
+      {% endblock %}
       </div>
     </section>
+  {% block other_content %}
     <section class="about">
       <div class="holder">
         <h2><span class="orange">Приобретите франшизу</span> рекламного агентства «Рекламные технологии» </h2>
@@ -547,6 +550,7 @@
           </script>
       </div>
     </section>
+  {% endblock %}
     <footer class="footer">
       <div class="footer-top">
         <div class="holder">
