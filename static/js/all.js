@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+  $(window).scroll( function(){
+		if ($(this).scrollTop() > 147){
+			$('.header-fix').addClass('fixed');
+		}else{
+			$('.header-fix').removeClass('fixed');
+		}
+	});
+
+
   // fancybox
   jQuery('.fancybox').fancybox();
   // popup close

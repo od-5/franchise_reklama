@@ -28,5 +28,6 @@ SUIT_CONFIG = {
         {'label': u'Заявки', 'icon': 'icon-list-alt', 'models': ('ticket.ticket',)},
         {'label': u'Продажи', 'icon': 'icon-user', 'models': ('ticket.sale',)},
         {'label': u'Города', 'icon': 'icon-map-marker', 'models': ('city.city',)},
+        {'label': u'Статьи', 'icon': 'icon-edit', 'models': ('blog.article',)},
     ),
 }

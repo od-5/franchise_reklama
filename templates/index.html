@@ -21,6 +21,8 @@
   <!--[if lt IE 9]><script type="text/javascript" src="{% static 'js/placeholder.js' %}"></script><![endif]-->
   <script src="{% static 'js/all.js' %}"></script>
   {{ SETUP.top_js|safe|default:'' }}
+  {% block top_js %}
+  {% endblock %}
 </head>
 <body>
 {% load i18n %}
@@ -52,9 +54,20 @@
         </div>
       </div>
     </header>
+    <div class="header-fix">
+      <div class="header-fix-holder">
+        <div class="holder">
+          <ul class="header-nav">
+            <li><a href="{% url 'landing:index' %}">Главная страница</a></li>
+            <li><a href="{% url 'article:list' %}">Список статей</a></li>
+            <li><a href="https://vk.com/franchise.reklamadoma">Мы вконтакте</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% block content %}
     <section class="top-banner">
       <div class="holder">
-      {% block top_content %}
         <div class="top-banner-left">
           <h1>УСПЕЙТЕ ОТКРЫТЬ <span class="yellow">СВОЙ</span> РЕКЛАМНЫЙ <span class="yellow">БИЗНЕС</span>
           ПО ФРАНШИЗЕ ВСЕГО ЗА <span class="yellow">2900 РУБЛЕЙ</span>!</h1>
@@ -89,10 +102,8 @@
           </div>
           <div class="top-banner-link"><a href="#video-popup" class="fancybox">Программная разработка, не имеющая аналогов в рекламной сфере «Контроль рекламных услуг»</a></div>
         </div>
-      {% endblock %}
       </div>
     </section>
-  {% block other_content %}
     <section class="about">
       <div class="holder">
         <h2><span class="orange">Приобретите франшизу</span> рекламного агентства «Рекламные технологии» </h2>
@@ -552,6 +563,7 @@
     </section>
   {% endblock %}
     <footer class="footer">
+    {% block footer_top %}
       <div class="footer-top">
         <div class="holder">
           <div class="footer-top-text">Хотите посмотреть, как будут выглядеть ваши будущие сайты?</div>
@@ -561,6 +573,7 @@
           </div>
         </div>
       </div>
+    {% endblock %}
       <div class="footer-bottom">
         <div class="holder">
           <div class="footer-line">

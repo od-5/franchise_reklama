@@ -5,5 +5,4 @@
 .idea/
 *.pyc
 core/migrations/
-/apps/sender/migrations
 /cms/settings/local_settings.py

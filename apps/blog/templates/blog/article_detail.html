@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block top_js %}
+<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+<script src="//yastatic.net/share2/share.js"></script>
+{% endblock %}
+{% block content %}
+  <section class="article">
+    <div class="holder">
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'landing:index' %}">Главная страница</a>
+        </li>
+        <li>
+          <a href="{% url 'article:list' %}">Статьи</a>
+        </li>
+      </ul>
+      <div class="article-item">
+        <h1 class="article-item__title">{{ article.title }}</h1>
+        <div class="article-shared">
+          <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter=""></div>
+        </div>
+        <p class="article__created">{{ article.created }}</p>
+        <div class="article-item__text">{{ article.text|safe }}</div>
+        <div class="article-shared">
+          <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block footer_top %}
+{% endblock %}
