@@ -11,7 +11,7 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     fieldsets = [
         (None, {
-            'fields': ['title', 'text', ]
+            'fields': ['title', 'preview', 'text', ]
         }),
         (u'SEO', {
             'classes': ('collapse',),
