@@ -14,7 +14,7 @@
       <div class="article-list-item">
         <h2 class="article-list-item__title">{{ article.title }}</h2>
         <p class="article__created">{{ article.created }}</p>
-        <div class="article-list-item__text">{{ article.text|safe|truncatechars:100 }}</div>
+        <div class="article-list-item__text">{{ article.text|safe|striptags|truncatewords:50 }}</div>
         <a href="{{ article.get_absolute_url }}" class="button">Подробнее</a>
       </div>
       {% endfor %}
