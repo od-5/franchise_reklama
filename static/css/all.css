@@ -45,6 +45,10 @@ input, textarea, select, button {
 button {font-weight: 300;}
 a:hover {text-decoration: none;}
 ul li {list-style: none;}
+.back {
+	background: url(../images/house.png) 0 4px no-repeat;
+	padding: 0 0 0 25px;
+}
 /************************* common styles *************************/
 .holder {
 	max-width: 1000px;
@@ -352,7 +356,7 @@ label.error {
 .article-item__text {
 	font-size: 16px;
 	line-height: 1.8em;
-}
+}ифс
 .article-list-item {
 	border: 1px solid #ededed;
 	border-radius: 5px;
