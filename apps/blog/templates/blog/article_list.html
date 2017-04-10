@@ -2,14 +2,6 @@
 {% block content %}
   <section class="article">
     <div class="holder">
-      <ul class="breadcrumb">
-        <li>
-          <a href="{% url 'landing:index' %}">Главная страница</a>
-        </li>
-        <li>
-          <a href="{% url 'article:list' %}">Статьи</a>
-        </li>
-      </ul>
       {% for article in object_list %}
       <div class="article-list-item">
         <h2 class="article-list-item__title">{{ article.title }}</h2>
