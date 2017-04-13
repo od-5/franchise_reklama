@@ -9,6 +9,16 @@ $(document).ready(function () {
 	});
 
 
+  // nav
+  $(document).on('click','.nav-icon',function(e){
+    e.preventDefault();
+    $('.header-nav-block').show();
+  });
+  $(document).on('click','.nav-close',function(e){
+    e.preventDefault();
+    $('.header-nav-block').hide();
+  });
+
   // fancybox
   jQuery('.fancybox').fancybox();
   // popup close

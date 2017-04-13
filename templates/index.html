@@ -55,8 +55,10 @@
       </div>
     </header>
     <div class="header-fix">
-      <div class="header-fix-holder">
-        <div class="holder">
+      <div class="holder">
+        <a href="" class="nav-icon"><img src="{% static 'images/nav-icon.png' %}" alt=""></a>
+        <div class="header-nav-block">
+          <a href="" class="nav-close"><img src="{% static 'images/mobile-close.png' %}" alt=""></a>
           <ul class="header-nav">
             <li><a href="{% url 'landing:index' %}" class="back">Главная</a></li>
             <li><a href="{% url 'article:list' %}">Статьи</a></li>

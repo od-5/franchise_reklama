@@ -217,6 +217,18 @@ label.error {
 	min-height: 100%;
 }
 /************************* header *************************/
+.header-fix {
+    height: 50px;
+    background: #fff;
+    -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+	z-index: 200;
+	position: relative;
+}
 .header-fix.fixed {
 	position: fixed;
 	top: 0;
@@ -224,16 +236,9 @@ label.error {
 	right: 0;
 	z-index: 200;
 }
-.header-fix-holder {
-	position: relative;
-	height: 68px;
-	background: #fff;
-	-webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
-	box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
-}
 .header-nav {
-	float: left;
-	padding: 22px 0 0;
+	overflow: hidden;
+	padding: 12px 0 0;
 }
 .header-nav li {
 	float: left;
@@ -252,7 +257,12 @@ label.error {
 .header-nav li a:hover, .header-nav li .active {
 	color: #e06216;
 }
-
+.nav-icon, .nav-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: none;
+}
 
 .header {
 	position: relative;
@@ -1171,6 +1181,28 @@ label.error {
 }
 /************************* media *************************/
 @media screen and (max-width: 1023px) {
+	.nav-icon, .nav-close {display: block;}
+	.back {
+		padding: 0;
+		background: none;
+	}
+	.header-nav-block {
+        position: relative;
+        z-index: 20;
+        display: none;
+        padding: 20px 0 20px;
+        margin: 0 -20px;
+        background: #fff;
+        -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    }
+	.header-nav li {
+		display: block;
+		float: none;
+		text-align: center;
+		margin: 0;
+		padding: 5px 0;
+	}
 	.header-slogan {display: none;}
 	.top-banner-left {
 		width: 550px;
