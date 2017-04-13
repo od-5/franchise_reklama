@@ -326,7 +326,7 @@ label.error {
 /************************* article *************************/
 .article {
 	flex: 1 0 auto;
-	padding: 114px 0 1px;
+	padding: 80px 0 1px;
 	margin: 0 0 67px;
 	background: url(../images/blog-bg.jpg) 50% 0 no-repeat;
 }
@@ -1284,6 +1284,9 @@ label.error {
 	}
 }
 @media screen and (max-width: 767px) {
+	.article {
+		padding: 27px 0 1px;
+	}
 	.article-list-item__title {
 		font-size: 16px;
 	}
