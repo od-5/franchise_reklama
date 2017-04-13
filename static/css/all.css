@@ -263,6 +263,13 @@ label.error {
 	right: 10px;
 	display: none;
 }
+.demo-link {
+	float: right !important;
+}
+.demo-link a {
+	color: #e06216 !important;
+	font-weight: bold;
+}
 
 .header {
 	position: relative;
@@ -1181,6 +1188,9 @@ label.error {
 }
 /************************* media *************************/
 @media screen and (max-width: 1023px) {
+	.demo-link {
+		float: none !important;
+	}
 	.nav-icon, .nav-close {display: block;}
 	.back {
 		padding: 0;
