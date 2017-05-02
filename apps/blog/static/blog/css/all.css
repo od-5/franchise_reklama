@@ -440,6 +440,9 @@ label.error {
 	padding: 60px 60px 60px;
 	background: #fff;
 }
+.blog-article img {
+	max-width: 100%;
+}
 .article-img-top {
 	display: block;
 	margin: -60px -60px 60px;
