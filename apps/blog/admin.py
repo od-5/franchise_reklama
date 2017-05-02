@@ -7,11 +7,12 @@ __author__ = 'alexy'
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'created', 'meta_title')
+    list_display = ('title', 'slug', 'created', 'meta_title', 'pic')
     prepopulated_fields = {"slug": ("title",)}
+    readonly_fields = ('pic', )
     fieldsets = [
         (None, {
-            'fields': ['title', 'preview', 'text', ]
+            'fields': ['title', 'cover', 'pic', 'preview', 'text', ]
         }),
         (u'SEO', {
             'classes': ('collapse',),

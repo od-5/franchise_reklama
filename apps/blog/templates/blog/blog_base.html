@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="{% block meta_key %}{% if object.meta_key %}{{ object.meta_key }}{% else %}{{ SETUP.meta_key }}{% endif %}{% endblock %}">
+  <meta name="description" content="{% block meta_desc %}{% if object.meta_desc %}{{ object.meta_desc }}{% else %}{{ SETUP.meta_desc }}{% endif %}{% endblock %}">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{#  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
+  <title>{% block title %}{% if object.meta_title %}{{ object.meta_title }}{% else %}{{ SETUP.title|default:'Проведем опрос, анкетирование, промо-акцию в любой точке России.' }}{% endif %}{% endblock %}</title>
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'blog/css/all.css' %}" />
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'blog/css/jquery.fancybox.css' %}" />
+	<script src="{% static 'blog/js/jquery-1.9.1.min.js' %}"></script>
+	<script src="{% static 'blog/js/masonry.pkgd.min.js' %}"></script>
+	<script src="{% static 'blog/js/jquery.validate.js' %}"></script>
+	<script src="{% static 'blog/js/jquery.fancybox.js' %}"></script>
+	<script src="{% static 'blog/js/jquery.maskedinput.js' %}"></script>
+	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'blog/js/html5.js' %}"></script><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'blog/js/placeholder.js' %}"></script><![endif]-->
+	<script src="{% static 'blog/js/all.js' %}"></script>
+  <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+  <script src="//yastatic.net/share2/share.js"></script>
+  {% block top_js %}
+  {% endblock %}
+</head>
+<body>
+{% load i18n %}
+	<div id="wrapper">
+		<header class="header">	
+			<div class="header-top">
+				<div class="holder">
+					<div class="header-slogan">БИЗНЕС, С КОТОРЫМ<br> СПРАВИТСЯ ДАЖЕ <span class="slogan-num">1</span> ЧЕЛОВЕк</div>
+					<div class="header-right">
+            <div class="header-lang" data-url="{% url 'set_language' %}">
+            {% get_current_language as LANGUAGE_CODE %}
+              <div class="langs-top">
+                <div class="langs-link">
+                  <a href="" class="{{ LANGUAGE_CODE }}"><span>{{ LANGUAGE_CODE|language_name_local }}</span></a>
+                </div>
+              </div>
+              <div class="langs-hidden">
+                {% csrf_token %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                  {% if language.code != LANGUAGE_CODE %}
+                  <div class="langs-link">
+                    <a data-language="{{ language.code }}" class="{{ language.code }}"><span>{{ language.name_local }}</span></a>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+{#						<div class="header-lang">#}
+{#							<div class="langs-top">#}
+{#								<div class="langs-link">#}
+{#									<a href="" class="ru"><span>Русский</span></a>#}
+{#								</div>#}
+{#							</div>#}
+{#							<div class="langs-hidden">#}
+{#								<div class="langs-link">#}
+{#									<a href="" class="ua"><span>Українська</span></a>#}
+{#								</div>#}
+{#								<div class="langs-link">#}
+{#									<a href="" class="kz"><span>Қазақ</span></a>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+						<div class="header-phone"><a href="{{ SETUP.phone|default:'8 800 250-34-50' }}">{{ SETUP.phone|default:'8 800 250-34-50' }}</a></div>
+					</div>
+					<div class="header-logo"><img src="{% static 'blog/images/logo.png' %}" alt=""></div>
+					<a href="" class="nav-icon"><img src="{% static 'blog/images/nav-icon.png' %}" alt=""></a>
+				</div>
+			</div>
+			<div class="header-line">
+				<div class="holder">
+					<div class="line-nav">
+						<ul>
+							<li class="icon1"><a href="{% url 'landing:index' %}"><span >Главная</span></a></li>
+							<li class="icon2"><a href="{% url 'article:list' %}"><span>Статьи</span></a></li>
+							<li class="icon3"><a href="https://www.youtube.com/channel/UCPLqOhapkX2JfhIB-iZ5uvw?view_as=public"><span>Наш YouTube канал</span></a></li>
+							<li class="icon4"><a href="https://vk.com/franchise.reklamadoma"><span>Мы вконтакте</span></a></li>
+						</ul>
+					</div>
+					<a href="http://reklamadoma.com/demo/login/" class="line-button"><span>Демо. вход</span></a>
+					<a href="" class="nav-close"><img src="{% static 'blog/images/nav-icon-white.png' %}" alt=""></a>
+				</div>
+			</div>
+		</header>
+  {% block content %}
+  {% endblock %}
+		<footer class="footer">
+			<div class="holder">
+				<div class="footer-top">
+					<div class="footer-logo"><img src="{% static 'blog/images/logo.png' %}" alt=""></div>
+					<div class="footer-copy"><a href="#hidden-block" class="fancybox">Политика конфиденциальности</a><br>
+					«Рекламные технологии» &copy;
+          <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script>
+          </div>
+					<div class="footer-phone">
+            <a href="tel:+{{ SETUP.phone|default:'88002503450' }}" class="footer-phone">
+              {{ SETUP.phone|default:'8 800 250-34-50' }}
+            </a>
+          </div>
+					<div id="hidden-block">
+						<h3>Политика конфиденциальности</h3>
+						<p>Мы не собираем личную информацию о Вас, когда Вы заходите на наш сайт. 
+						Вы можете анонимно просматривать сайт. Тем не менее, Ваш браузер все же автоматически сообщает нам тип компьютера и операционной системы, которые Вы используете. Единственная личная информация о Вас, которую мы получаем, это те данные, которые Вы добровольно предоставляете при заполнении форм.
+						При заполнении форм на сайте у Вас запросят персональную информацию, такую как имя, номер телефона. Предоставление такой информации в ответ на запрос осуществляется Вами исключительно добровольно. 
+						Предоставленная Вами информация используется чтобы оказать те услуги, которые Вы сами запрашиваете.
+						</p>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="footer-info1"><b>Юр. лицо в России</b><br>
+					ООО "Рекламные технологии" <br>РФ, г. Москва, проспект Мира, д. 131</div>
+					<div class="footer-info2"><b>Юр. лицо в Чехии</b><br>
+					International Communication Technologies s.r.o. Ostrava, Moravska Ostrava, Vystavni 1928/9, Postcode 702 00</div>
+					<div class="footer-studio">
+						<div class="footer-studio-text">Дизайн сайта:</div>
+						<a href="http://neurondg.com/" target="_blank"><img src="{% static 'blog/images/studio.png' %}" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

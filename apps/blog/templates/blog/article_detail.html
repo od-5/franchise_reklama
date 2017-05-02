@@ -1,24 +1,63 @@
-{% extends 'index.html' %}
-{% block top_js %}
-<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-<script src="//yastatic.net/share2/share.js"></script>
-{% endblock %}
+{% extends 'blog/blog_base.html' %}
+{% load static %}
 {% block content %}
-  <section class="article">
+  <section class="main">
     <div class="holder">
-      <div class="article-item">
-        <h1 class="article-item__title">{{ article.title }}</h1>
-        <div class="article-shared">
-          <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter=""></div>
+      <div class="breadcrumbs">
+        <ul>
+          <li><a href="{% url 'article:list' %}">Блог</a></li>
+          <li><span>{{ object.title }}</span></li>
+        </ul>
+      </div>
+      <div class="blog-page">
+        <h1>{{ object.title }}</h1>
+        <div class="blog-date">{{ object.created }}</div>
+        <article class="blog-article">
+          {{ object.text|safe }}
+          <div class="article-webs">
+            <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter" data-counter=""></div>
+          </div>
+        </article>
+        <div class="form-block">
+          <div class="form-title">Станьте частью команды успешных и предприимчивых и развивайте свой бизнес с помощью опытного наставника</div>
+          <div class="form-line">
+            <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+              <fieldset>
+                <div class="form-item">
+                  <input name="name" type="text" class="input" placeholder="Ваше имя">
+                </div>
+                <div class="form-item">
+                  <input name="mail" type="text" class="input" placeholder="Ваш email">
+                </div>
+                <div class="form-item">
+                  <input name="phone" type="text" class="input" placeholder="Телефон">
+                </div>
+                <input type="hidden" name="theme" value="Заявка">
+                <button class="submit">Оставить заявку</button>
+              </fieldset>
+            </form>
+          </div>
         </div>
-        <p class="article__created">{{ article.created }}</p>
-        <div class="article-item__text">{{ article.text|safe }}</div>
-        <div class="article-shared">
-          <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter=""></div>
+      </div>
+      <h2 class="title">Читайте также</h2>
+      <div class="blog">
+        <div class="blog-list">
+          <div class="blog-sizer"></div>
+          <div class="gutter-sizer"></div>
+        {% for item in last_article %}
+          <div class="blog-item">
+            <div class="blog-item-img"><a href="{{ item.get_absolute_url }}">{% if item.cover %}<img src="{{ item.cover.url }}" alt="">{% endif %}</a></div>
+            <div class="blog-item-content">
+              <div class="blog-item-title"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>
+              <div class="blog-item-date">{{ item.created }}</div>
+              <div class="blog-item-text">{{ item.get_preview_text|safe|striptags }}</div>
+              <div class="blog-item-link"><a href="{{ item.get_absolute_url }}">Читать далее</a></div>
+            </div>
+          </div>
+        {% endfor %}
+
         </div>
       </div>
     </div>
   </section>
-{% endblock %}
-{% block footer_top %}
 {% endblock %}

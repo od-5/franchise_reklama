@@ -1,17 +1,33 @@
-{% extends 'index.html' %}
+{% extends 'blog/blog_base.html' %}
+{% load static %}
 {% block content %}
-  <section class="article">
+  <section class="main">
     <div class="holder">
-      {% for article in object_list %}
-      <div class="article-list-item">
-        <h2 class="article-list-item__title">{{ article.title }}</h2>
-        <p class="article__created">{{ article.created }}</p>
-        <div class="article-list-item__text">{{ article.get_preview_text|safe|striptags }}</div>
-        <a href="{{ article.get_absolute_url }}" class="button">Подробнее</a>
+      <h1 class="title">Статьи</h1>
+      <div class="blog">
+        <div class="blog-list">
+          <div class="blog-sizer"></div>
+          <div class="gutter-sizer"></div>
+        {% for article in article_list %}
+          <div class="blog-item">
+            <div class="blog-item-img"><a href="">{% if article.cover %}<img src="{{ article.cover.url }}" alt="">{% endif %}</a></div>
+            <div class="blog-item-content">
+              <div class="blog-item-title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></div>
+              <div class="blog-item-date">{{ article.created }}</div>
+              <div class="blog-item-text">{{ article.get_preview_text|safe|striptags }}</div>
+              <div class="blog-item-link"><a href="{{ article.get_absolute_url }}">Читать далее</a></div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+        <div class="article-webs">
+          <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter" data-counter=""></div>
+        </div>
+{#        <div class="button-holder">#}
+{#          <a href="" class="button-more"> <img src="{% static 'blog/images/round-arrows.png' %}" alt="" class="round-arrows">Загрузить еще</a>#}
+{#        </div>#}
       </div>
-      {% endfor %}
     </div>
   </section>
-{% endblock %}
-{% block footer_top %}
-{% endblock %}
+  {% endblock %}

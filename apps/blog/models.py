@@ -17,7 +17,17 @@ class Article(CommonPage):
 
     text = RichTextField(verbose_name=u'Описание')
     preview = models.TextField(verbose_name=u'Анонс', blank=True, null=True)
+    cover = models.ImageField(verbose_name=u'Обложка', blank=True, null=True, upload_to='blog/')
     slug = models.SlugField(verbose_name=u'url')
+
+    def pic(self):
+        if self.cover:
+            return '<img src="%s" width="100"/>' % self.cover.url
+        else:
+            return '----'
+
+    pic.short_description = u"миниатюра"
+    pic.allow_tags = True
 
     def __unicode__(self):
         return self.title

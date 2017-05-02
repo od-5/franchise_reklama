@@ -20,6 +20,8 @@
   <!--[if lt IE 9]><script type="text/javascript" src="{% static 'js/html5.js' %}"></script><![endif]-->
   <!--[if lt IE 9]><script type="text/javascript" src="{% static 'js/placeholder.js' %}"></script><![endif]-->
   <script src="{% static 'js/all.js' %}?v=1"></script>
+  <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+  <script src="//yastatic.net/share2/share.js"></script>
   {{ SETUP.top_js|safe|default:'' }}
   {% block top_js %}
   {% endblock %}
@@ -574,6 +576,9 @@
           <div class="footer-top-links">
             <div class="footer-top-link"><a href="http://www.reklamadoma.com/">Интернет-портал по распространению и расклейки рекламной продукции</a></div>
             <div class="footer-top-link"><a href="http://www.promo-reklama.com/">Интернет- Портал по проведению опросов, анкетирования и раздаче рекламных материалов</a></div>
+          </div>
+          <div class="article-webs">
+            <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter" data-counter=""></div>
           </div>
         </div>
       </div>
