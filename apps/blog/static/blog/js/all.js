@@ -57,7 +57,7 @@ $(window).load(function(){
 		percentPosition: true
 		
 	});
-	$('.langs-link a').click(function(){
+	$('.langs-hidden .langs-link a').click(function(){
     var url = $(this).parents('.header-lang').data('url');
     console.log(url);
     var csrfmiddlewaretoken = $('.header-lang input[name=csrfmiddlewaretoken]').val();

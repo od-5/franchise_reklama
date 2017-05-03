@@ -11,13 +11,13 @@ $(document).ready(function () {
 
   // nav
   $(document).on('click','.nav-icon',function(e){
-    e.preventDefault();
-    $('.header-nav-block').show();
-  });
-  $(document).on('click','.nav-close',function(e){
-    e.preventDefault();
-    $('.header-nav-block').hide();
-  });
+		e.preventDefault();
+		$('.header-line').slideDown();
+	});
+	$(document).on('click','.nav-close',function(e){
+		e.preventDefault();
+		$('.header-line').slideUp();
+	});
 
   // fancybox
   jQuery('.fancybox').fancybox();
@@ -88,10 +88,10 @@ $(document).ready(function () {
     autoplay: false
   });
 
-  $('.langs-link a').click(function(){
-    var url = $(this).parents('.header-langs').data('url');
+  $('.langs-hidden .langs-link a').click(function(){
+    var url = $(this).parents('.header-lang').data('url');
     console.log(url);
-    var csrfmiddlewaretoken = $('.header-langs input[name=csrfmiddlewaretoken]').val();
+    var csrfmiddlewaretoken = $('.header-lang input[name=csrfmiddlewaretoken]').val();
     console.log(csrfmiddlewaretoken);
     var language = $(this).data('language');
     console.log(language);

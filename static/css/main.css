@@ -1,0 +1,405 @@
+@font-face {
+  font-family: 'CourierNew';
+  src: url('../fonts/CourierNew.eot');
+  src: url('../fonts/CourierNew.eot') format('embedded-opentype'),
+       url('../fonts/CourierNew.woff2') format('woff2'),
+       url('../fonts/CourierNew.woff') format('woff'),
+       url('../fonts/CourierNew.ttf') format('truetype');
+}
+/************************* reset *************************/
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+body{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-weight: 300;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	line-height: 24px;
+	min-width: 320px;
+	color: #000;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+h1, h2, h3, h4, p, ul, li, a, span, div, input, textarea, select, form, fieldset, button, dl, dd, dt, figure, figcaption, blockquote, caption, aside, section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	box-sizing: border-box;
+}
+img {
+	margin: 0;
+	padding: 0;
+	border-style: none;
+	vertical-align: bottom;
+}
+input, textarea, select, button {
+	font-weight: 300;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	vertical-align:middle;
+	border: 0;
+	outline: 0;
+	background: none;
+}
+button {font-weight: 300;}
+a:hover {text-decoration: none;}
+ul li {list-style: none;}
+/************************* common styles *************************/
+.holder {
+	padding: 0 20px;
+	margin: 0 auto;
+}
+.holder:after {
+	display: block;
+	content: '';
+	clear: both;
+}
+/************************* wrapper *************************/
+#wrapper {
+	position: relative;
+	overflow: hidden;
+}
+/************************* header *************************/
+.header {position: relative;}
+.header-top {
+	position: relative;
+	padding: 46px 0 39px;
+}
+
+.header-right {
+	float: right;
+	padding: 6px 0 0;
+}
+.header-slogan {
+	float: left;
+	padding: 14px 0 0;
+	color: #939598;
+	font-size: 18px;
+
+	line-height: 22px;
+	text-transform: uppercase;
+}
+.header-slogan-num {
+	display: inline-block;
+	vertical-align: top;
+	margin: -1px 0 0;
+	height: 24px;
+	padding: 1px 6px;
+	color: #000;
+	background: #f9c911;
+}
+.header-logo {
+	padding: 0 300px;
+	text-align: center;
+}
+.header-phone {
+	float: right;
+	padding: 9px 0 0;
+	font-size: 24px;
+	font-weight: 700;
+    font-family: 'CourierNew';
+}
+.header-phone a {
+	color: #000;
+	text-decoration: none;
+}
+/************************* langs *************************/
+.header-lang {
+	position: relative;
+}
+.header-lang:hover .langs-hidden {display: block;}
+.langs-top {
+	float: right;
+}
+.langs-top .langs-link a {
+	height: 25px;
+	padding: 0 29px 0 15px;
+	background: #e9f4ff url(../images/arrow.png) 0 50% no-repeat;
+	background-position: right 10px center;
+	border: 1px solid #cddff2;
+	border-radius: 11px;
+}
+.langs-link {
+	font-size: 12px;
+}
+.langs-link a {
+	display: block;
+	color: #000;
+	text-decoration: none;
+}
+.langs-link span {
+	padding: 0 0 0 22px;
+	cursor: pointer;
+}
+.langs-hidden {
+	position: absolute;
+	top: 24px;
+	right: 0;
+	display: none;
+	padding: 7px 29px 8px 15px;
+	background: #e9f4ff;
+	border: 1px solid #cddff2;
+	border-radius: 11px;
+}
+
+.ru span {background: url(../images/flag1.png) 0 50% no-repeat;}
+.uk span {background: url(../images/flag2.png) 0 50% no-repeat;}
+.kk span {background: url(../images/flag3.png) 0 50% no-repeat;}
+/************************* navigation *************************/
+.nav-icon {
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	display: none;
+}
+.nav-close {
+	position: absolute;
+	top: 26px;
+	right: 24px;
+	display: none;
+}
+.header-line {
+	height: 52px;
+	color: #333;
+	background: #743c93;
+}
+.line-nav {
+	float: left;
+	width: 660px;
+}
+.line-nav ul {
+	display: table;
+	width: 100%;
+}
+.line-nav li {
+	display: table-cell;
+	text-align: center;
+}
+.line-nav span {display: inline-block;}
+.icon1 {width: 133px;}
+.icon2 {width: 133px;}
+.icon3 {width: 220px;}
+.icon1 span {
+	padding: 0 0 0 35px;
+	background: url(../images/icon1.png) 0 50% no-repeat;
+}
+.icon2 span {
+	padding: 0 0 0 35px;
+	background: url(../images/icon2.png) 0 50% no-repeat;
+}
+.icon3 span {
+	padding: 0 0 0 41px;
+	background: url(../images/icon3.png) 0 50% no-repeat;
+}
+.icon4 span {
+	padding: 0 0 0 36px;
+	background: url(../images/icon4.png) 0 50% no-repeat;
+}
+.line-nav a {
+	display: block;
+	color: #fff;
+	font-size: 16px;
+	line-height: 52px;
+	text-decoration: none;
+	border-left: 1px solid #7c4c96;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+}
+.line-nav a:hover {background: #8542aa;}
+.line-button {
+	display: block;
+	height: 52px;
+	margin: 0 0 0 660px;
+	color: #fff;
+	font-size: 16px;
+	line-height: 52px;
+	text-align: center;
+	text-decoration: none;
+	background: #47aa25;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+}
+.line-button:hover {background: #50c029;}
+.line-button span {
+	padding: 0 0 0 35px;
+	background: url(../images/icon5.png) 0 50% no-repeat;
+}
+/************************* footer *************************/
+.footer {
+	overflow: hidden;
+	background: #fff;
+	flex: 0 0 auto;
+}
+.footer-top {
+	padding: 39px 0 15px;
+	line-height: 21px;
+	text-align: center;
+	-webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+}
+.footer-top-text {margin: 0 0 26px;}
+.footer-top-links {padding: 0 0 1px;}
+.footer-top-link {
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+	padding: 0 10px;
+	margin: 0 0 20px;
+}
+.footer-top-link a {color: #0072bc;}
+.footer-bottom {
+	padding: 26px 0 23px;
+	font-size: 14px;
+	line-height: 20px;
+}
+.footer-line {
+	overflow: hidden;
+	margin: 0 0 32px;
+}
+.footer-logo {
+	float: left;
+}
+.footer-logo img {width: 200px;}
+.footer-copy {
+	float: left;
+	margin: 8px 0 0 120px;
+	font-weight: 400;
+}
+.footer-copy a {color: #1f1f1f;}
+.footer-phone {
+	float: right;
+	display: block;
+	padding: 15px 0 0;
+    color: #000;
+    font-size: 35px;
+    line-height: 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.footer-studio {
+	float: right;
+}
+.footer-studio {
+	color: #1f1f1f;
+	font-weight: 400;
+	text-decoration: none;
+}
+.footer-studio span {
+	display: block;
+}
+
+.footer-info1 {
+	float: left;
+	margin: 0 80px 0 0;
+}
+.footer-info2 {
+	float: left;
+	max-width: 360px;
+}
+
+@media screen and (max-width: 960px) {
+  .header-right {
+    float: left;
+    padding: 0;
+  }
+  .header-slogan {display: none;}
+  .header-top {padding: 30px 0 69px;}
+  .header-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 60px 0 52px;
+    height: auto;
+    background: #743c93;
+    z-index: 40;
+  }
+  .header-logo {padding: 0 100px;}
+  .header-phone {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    float: none;
+    padding: 9px 20px 0;
+    text-align: center;
+  }
+  .langs-hidden {
+    right: auto;
+    left: 0;
+  }
+  .line-nav {
+    float: none;
+    width: auto;
+    margin: 0 -20px;
+  }
+  .line-nav ul {
+    display: block;
+    width: auto;
+  }
+  .line-nav li {
+    display: block;
+    text-align: center;
+  }
+  .line-nav a {
+    border-left: none;
+  }
+  .line-button {
+    margin: 0 -20px;
+  }
+  .icon1 {
+    width: auto;
+  }
+  .icon2 {
+    width: auto;
+  }
+  .icon3 {
+    width: auto;
+  }
+  .nav-icon {display: block;}
+  .nav-close {
+    display: block;
+  }
+  .footer {text-align: center;}
+  .footer-logo {
+    float: none;
+    margin: 0 0 20px;
+  }
+  .footer-copy {
+    float: none;
+    margin: 0;
+  }
+  .footer-phone {
+    float: none;
+    padding: 15px 0 0;
+  }
+  .footer-studio {
+    float: none;
+  }
+  .footer-info1 {
+    float: none;
+    margin: 0 0 20px;
+  }
+  .footer-info2 {
+    float: none;
+    max-width: 360px;
+    margin: 0 auto 20px;
+  }
+}
+@media screen and (max-width: 640px) {
+    .header-logo {
+        padding: 50px 0 0;
+    }
+}
