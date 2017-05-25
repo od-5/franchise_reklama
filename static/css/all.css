@@ -583,6 +583,15 @@ label.error {
 	line-height: 29px;
 	text-align: center;
 }
+/************************* 404 page *************************/
+.error {
+	text-align: center;
+    padding: 100px 0;
+}
+.error h1 {
+	color: #333;
+	font-weight: bold;
+}
 /************************* sistem *************************/
 .sistem {
 	padding: 102px 0 84px;

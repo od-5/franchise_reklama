@@ -7,7 +7,7 @@
   <meta name="description" content="{% block meta_desc %}{% if object.meta_desc %}{{ object.meta_desc }}{% else %}{{ SETUP.meta_desc }}{% endif %}{% endblock %}">
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-{#  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
+  <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
   <title>{% block title %}{% if object.meta_title %}{{ object.meta_title }}{% else %}{{ SETUP.title|default:'Проведем опрос, анкетирование, промо-акцию в любой точке России.' }}{% endif %}{% endblock %}</title>
   <link media="all" rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
   <link media="all" rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
@@ -55,7 +55,7 @@
                 {% endfor %}
               </div>
             </div>
-            <div class="header-phone"><a href="{{ SETUP.phone|default:'8 800 250-34-50' }}">{{ SETUP.phone|default:'8 800 250-34-50' }}</a></div>
+            <div class="header-phone"><a href="tel:+{{ SETUP.phone|default:'8 800 250-34-50' }}">{{ SETUP.phone|default:'8 800 250-34-50' }}</a></div>
           </div>
           <div class="header-logo"><a href="{% url 'landing:index' %}"><img src="{% static 'images/logo.png' %}" alt=""></a></div>
           <a href="" class="nav-icon"><img src="{% static 'blog/images/nav-icon.png' %}" alt=""></a>
