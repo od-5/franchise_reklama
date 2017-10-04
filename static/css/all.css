@@ -708,6 +708,10 @@ label.error {
 	line-height: 16px;
 	text-align: center;
 }
+.order-text_big {
+	font-size: 20px;
+	line-height: 1.2em;
+}
 /************************* reasons *************************/
 .reasons {
 	padding: 100px 0 0;
