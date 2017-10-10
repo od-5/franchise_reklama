@@ -3,6 +3,11 @@
 /apps/city/migrations
 /apps/blog/migrations
 .idea/
+*.sublime*
 *.pyc
 core/migrations/
 /cms/settings/local_settings.py
+venv
+docker
+Dockerfile
+docker-compose.yml
