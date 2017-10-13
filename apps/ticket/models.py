@@ -20,21 +20,6 @@ class Ticket(Common):
     def __unicode__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     # if not self.country and self.city and self.time_zone:
-    #     try:
-    #         api_key = settings.HTMLWEB_API_KEY
-    #         data = getphoneObject(self.phone, api_key)
-    #         try:
-    #             self.country = data['fullname']
-    #             self.city = data['0']['name']
-    #             self.time_zone = data['time_zone']
-    #         except:
-    #             self.country = data['0']['country']
-    #     except:
-    #         pass
-    #     super(Ticket, self).save(*args, **kwargs)
-
     def performed_at(self):
         pass
 
@@ -50,7 +35,7 @@ class Ticket(Common):
     name = models.CharField(verbose_name=u'Имя', max_length=256)
     phone = models.CharField(verbose_name=u'Телефон', max_length=20)
     mail = models.EmailField(verbose_name=u'e-mail', max_length=100)
-    status = models.PositiveSmallIntegerField(verbose_name=u'Статус заявки',  choices=TICKET_STATUS_CHOICE, default=1)
+    status = models.PositiveSmallIntegerField(verbose_name=u'Статус заявки', choices=TICKET_STATUS_CHOICE, default=1)
     theme = models.CharField(verbose_name=u'Тема', max_length=256, blank=True, null=True)
     ticket_comment = models.TextField(verbose_name=u'Комментарий менеджера', blank=True, null=True)
     sale = models.BooleanField(verbose_name=u'Продажа', default=False)
@@ -59,6 +44,19 @@ class Ticket(Common):
     city = models.CharField(max_length=200, verbose_name=u'Город', blank=True, null=True)
     time_zone = models.CharField(max_length=10, verbose_name=u'Часовой пояс', blank=True, null=True)
     contact_date = models.DateTimeField(verbose_name=u'Дата контакта', blank=True, null=True)
+
+    utm_source = models.CharField(max_length=256, default='')
+    utm_medium = models.CharField(max_length=256, default='')
+    utm_campaign = models.CharField(max_length=256, default='')
+    utm_content = models.CharField(max_length=256, default='')
+    utm_term = models.CharField(max_length=256, default='')
+
+
+class Sale(Ticket):
+    class Meta:
+        proxy = True
+        verbose_name = u'Продажа'
+        verbose_name_plural = u'Продажи'
 
 
 @receiver(pre_save, sender=Ticket)

@@ -26,6 +26,13 @@ def ticket_send(request):
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.status = 1
+
+            if 'utm_labels' in request.session:
+                for label_name in request.session['utm_labels']:
+                    if hasattr(ticket, label_name):
+                        setattr(ticket, label_name, request.session['utm_labels'][label_name])
+                del request.session['utm_labels']
+
             ticket.save()
             mail_theme_msg = u'franchise.reklamadoma.com - %s' % ticket.theme
             message = u'Тема: %s\nИмя: %s\nТелефон: %s\nE-mail: %s\n' % \
@@ -64,5 +71,6 @@ def new_ticket_send(sender, **kwargs):
         )
     except:
         pass
+
 
 new_ticket.connect(new_ticket_send)
