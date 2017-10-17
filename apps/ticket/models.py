@@ -56,6 +56,9 @@ class TicketComment(Common):
     ticket = models.ForeignKey(Ticket, verbose_name=u'Заявка', on_delete=models.CASCADE)
     text = models.TextField(verbose_name=u'Комментарий менеджера', blank=True, null=True)
 
+    class Meta:
+        ordering = ('-created', '-id')
+
 
 class Sale(Ticket):
     class Meta:
