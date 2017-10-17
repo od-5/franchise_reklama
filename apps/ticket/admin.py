@@ -2,22 +2,12 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from django.forms import ModelForm
 from django.template.loader import render_to_string
 from django.conf.urls import patterns, url
 
-from suit.widgets import EnclosedInput, AutosizedTextarea
-
 from .models import Ticket, Sale
 from .views import UpdateTicketCommentView
-
-
-class TicketAdminForm(ModelForm):
-    class Meta:
-        widgets = {
-            'comment': AutosizedTextarea,
-            'ticket_comment': AutosizedTextarea,
-        }
+from .forms import TicketAdminForm, SaleAdminForm
 
 
 class _TicketModalsMixin(admin.ModelAdmin):
@@ -58,15 +48,6 @@ class TicketAdmin(_TicketModalsMixin, admin.ModelAdmin):
         else:
             qs = Ticket.objects.filter(manager=user, sale=False)
         return qs
-
-
-class SaleAdminForm(ModelForm):
-    class Meta:
-        widgets = {
-            'price': EnclosedInput(append=u'руб.'),
-            'comment': AutosizedTextarea,
-            'ticket_comment': AutosizedTextarea,
-        }
 
 
 class SaleAdmin(_TicketModalsMixin, admin.ModelAdmin):
