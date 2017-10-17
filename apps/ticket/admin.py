@@ -41,8 +41,8 @@ class _TicketModalsMixin(admin.ModelAdmin):
 
 
 class TicketAdmin(_TicketModalsMixin, admin.ModelAdmin):
-    list_display = ('name', 'phone', 'mail', 'created', 'status', 'contact_date', 'manager', 'comment_modal_button',
-                    'country', 'city', 'time_zone', 'utm_modal_button')
+    list_display = ('name', 'phone', 'mail', 'status', 'contact_date', 'manager', 'comment_modal_button', 'city',
+                    'time_zone', 'utm_modal_button')
     list_filter = ['mail', 'created', 'status', 'manager', 'contact_date']
     search_fields = ['mail', 'manager']
     date_hierarchy = 'created'
