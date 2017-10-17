@@ -1,33 +1,29 @@
 {% for instance in instances %}
-  <div id="js-modal-utm-labels-{{ instance.pk }}" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Метки utm</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-            <strong>utm_source: </strong>
-            <span>{{ instance.utm_source }}</span>
-          </p>
-          <p>
-            <strong>utm_medium: </strong>
-            <span>{{ instance.utm_medium }}</span>
-          </p>
-          <p>
-            <strong>utm_campaign: </strong>
-            <span>{{ instance.utm_campaign }}</span>
-          </p>
-          <p>
-            <strong>utm_content: </strong>
-            <span>{{ instance.utm_content }}</span>
-          </p>
-            <strong>utm_term: </strong>
-            <span>{{ instance.utm_term }}</span>
-          </p>
-        </div>
-      </div>
+  <div id="js-modal-utm-labels-{{ instance.pk }}" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+      <h3 id="myModalLabel">Метки utm</h3>
+    </div>
+    <div class="modal-body">
+      <p>
+        <strong>utm_source: </strong>
+        <span>{{ instance.utm_source }}</span>
+      </p>
+      <p>
+        <strong>utm_medium: </strong>
+        <span>{{ instance.utm_medium }}</span>
+      </p>
+      <p>
+        <strong>utm_campaign: </strong>
+        <span>{{ instance.utm_campaign }}</span>
+      </p>
+      <p>
+        <strong>utm_content: </strong>
+        <span>{{ instance.utm_content }}</span>
+      </p>
+        <strong>utm_term: </strong>
+        <span>{{ instance.utm_term }}</span>
+      </p>
     </div>
   </div>
 {% endfor %}

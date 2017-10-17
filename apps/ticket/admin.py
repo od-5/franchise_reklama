@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.conf.urls import patterns, url
 
 from .models import Ticket, Sale
-from .views import UpdateTicketCommentView
+from .views import TicketCommentCreateView
 from .forms import TicketAdminForm, SaleAdminForm
 
 
@@ -16,8 +16,8 @@ class _TicketModalsMixin(admin.ModelAdmin):
         urls = super(_TicketModalsMixin, self).get_urls()
         urls = patterns(
             '',
-            url(r'^(?P<pk>\d+)/update_comment/$', self.admin_site.admin_view(UpdateTicketCommentView.as_view()),
-                name='ticket_ticket_update_comment')
+            url(r'^(?P<pk>\d+)/create_comment/$', self.admin_site.admin_view(TicketCommentCreateView.as_view()),
+                name='ticket_ticket_create_comment')
         ) + urls
         return urls
 

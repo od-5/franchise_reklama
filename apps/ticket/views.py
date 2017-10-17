@@ -1,15 +1,22 @@
 # coding=utf-8
 from __future__ import unicode_literals
 
-from django.views.generic import UpdateView
+from django.views.generic import CreateView
+from django.shortcuts import get_object_or_404
 
-from .models import Ticket
+from .models import Ticket, TicketComment
 from .forms import TicketCommentForm
 
 
-class UpdateTicketCommentView(UpdateView):
-    model = Ticket
+class TicketCommentCreateView(CreateView):
+    model = TicketComment
     form_class = TicketCommentForm
+
+    def get_form(self, form_class=None):
+        ticket = get_object_or_404(Ticket, pk=self.kwargs.get('pk'))
+        form = super(TicketCommentCreateView, self).get_form(form_class)
+        form.instance.ticket = ticket
+        return form
 
     def get_success_url(self):
         return self.request.GET.get('next', '')

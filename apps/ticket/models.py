@@ -11,18 +11,6 @@ __author__ = 'alexy'
 
 
 class Ticket(Common):
-    class Meta:
-        verbose_name = u'Заявка'
-        verbose_name_plural = u'Заявки'
-        app_label = 'ticket'
-        ordering = ['-contact_date']
-
-    def __unicode__(self):
-        return self.name
-
-    def performed_at(self):
-        pass
-
     TICKET_STATUS_CHOICE = (
         (0, u'В обработке'),
         (1, u'Новая заявка'),
@@ -50,6 +38,23 @@ class Ticket(Common):
     utm_campaign = models.CharField(max_length=256, default='')
     utm_content = models.CharField(max_length=256, default='')
     utm_term = models.CharField(max_length=256, default='')
+
+    class Meta:
+        verbose_name = u'Заявка'
+        verbose_name_plural = u'Заявки'
+        app_label = 'ticket'
+        ordering = ['-contact_date']
+
+    def __unicode__(self):
+        return self.name
+
+    def performed_at(self):
+        pass
+
+
+class TicketComment(Common):
+    ticket = models.ForeignKey(Ticket, verbose_name=u'Заявка', on_delete=models.CASCADE)
+    text = models.TextField(verbose_name=u'Комментарий менеджера', blank=True, null=True)
 
 
 class Sale(Ticket):

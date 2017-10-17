@@ -1,6 +1,6 @@
 # coding=utf-8
-from ckeditor.fields import RichTextField
 from django.db import models
+
 from core.models import User
 
 __author__ = 'alexey'

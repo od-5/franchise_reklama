@@ -3,7 +3,7 @@ from django.forms import ModelForm
 
 from suit.widgets import EnclosedInput, AutosizedTextarea
 
-from .models import Ticket
+from .models import Ticket, TicketComment
 
 __author__ = 'Rylcev Alexy'
 
@@ -16,8 +16,8 @@ class TicketForm(ModelForm):
 
 class TicketCommentForm(ModelForm):
     class Meta:
-        model = Ticket
-        fields = ('ticket_comment',)
+        model = TicketComment
+        fields = ('text',)
 
 
 class TicketAdminForm(ModelForm):
