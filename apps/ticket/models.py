@@ -3,6 +3,8 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.core.mail import send_mail
+
 from core.phone_inform import getphoneObject
 from core.base_model import Common
 from core.models import User
@@ -50,6 +52,21 @@ class Ticket(Common):
 
     def performed_at(self):
         pass
+
+    def __init__(self, *args, **kwargs):
+        super(Ticket, self).__init__(*args, **kwargs)
+        self. _old_manager = self.manager
+
+    def save(self, *args, **kwargs):
+        super(Ticket, self).save(*args, **kwargs)
+
+        if self.manager is not None and self.manager != self._old_manager:
+            send_mail(
+                'franchise.onlinesadik.com - Вам назначена новая заявка',
+                'Имя: {}\nТелефон: {}\nEmail: {}'.format(self.name, self.phone, self.mail),
+                settings.DEFAULT_FROM_EMAIL,
+                [self.manager.email, ]
+            )
 
 
 class TicketComment(Common):
