@@ -16,6 +16,10 @@
           <div class="form-group">
             <textarea name="text" class="form-control" style="width: 500px;" rows="10" placeholder="Добавить комментарий" required></textarea>
           </div>
+          <div class="form-group">
+            <label>Дата следующего контакта:</label>
+            <input type="text" name="contact_date" style="form-control" value="{{ instance.contact_date|date:'d.m.Y H:i' }}">
+          </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Сохранить</button>

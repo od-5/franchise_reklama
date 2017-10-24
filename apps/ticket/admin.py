@@ -12,6 +12,17 @@ from .forms import TicketAdminForm, SaleAdminForm
 
 class _TicketModalsMixin(admin.ModelAdmin):
 
+    class Media:
+        css = {
+            'all': (
+                'css/jquery.datetimepicker.min.css',
+            )
+        }
+        js = (
+            'js/jquery.datetimepicker.full.min.js',
+            'ticket/js/ticket_modal.js',
+        )
+
     def get_urls(self):
         urls = super(_TicketModalsMixin, self).get_urls()
         urls = patterns(
@@ -62,8 +73,7 @@ class SaleAdmin(_TicketModalsMixin, admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
-    list_display = ('name', 'phone', 'mail', 'created', 'price', 'comment_modal_button', 'contact_date',
-                    'utm_modal_button')
+    list_display = ('name', 'phone', 'mail', 'created', 'price', 'comment_modal_button', 'utm_modal_button')
     list_filter = ['mail', 'created', 'status', 'manager']
     search_fields = ['mail', 'manager']
     date_hierarchy = 'created'

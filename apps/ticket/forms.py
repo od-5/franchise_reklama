@@ -1,5 +1,5 @@
 # coding=utf-8
-from django.forms import ModelForm
+from django.forms import ModelForm, DateTimeField
 
 from suit.widgets import EnclosedInput, AutosizedTextarea
 
@@ -15,6 +15,8 @@ class TicketForm(ModelForm):
 
 
 class TicketCommentForm(ModelForm):
+    contact_date = DateTimeField(required=False)
+
     class Meta:
         model = TicketComment
         fields = ('text',)

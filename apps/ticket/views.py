@@ -18,5 +18,11 @@ class TicketCommentCreateView(CreateView):
         form.instance.ticket = ticket
         return form
 
+    def form_valid(self, form):
+        ticket = form.instance.ticket
+        ticket.contact_date = form.cleaned_data['contact_date']
+        ticket.save()
+        return super(TicketCommentCreateView, self).form_valid(form)
+
     def get_success_url(self):
         return self.request.GET.get('next', '')
